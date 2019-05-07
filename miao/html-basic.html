@@ -70,7 +70,7 @@
     <hr>
     <h3>Google搜索</h3>
     <form action="http://www.google.com/search" targer="_blank">
-      <input type="text" placeholder="请输入想要搜索的内容" name="q">
+      <input type="text" autocomplete="off" placeholder="请输入想要搜索的内容" name="q">
       <input type="submit" value="在新窗口打开搜索结果">
     </form>
     <hr>
@@ -133,5 +133,57 @@
       <button type="reset">重置</button>
     </form>
     <hr>
+    <table border=1>
+      <caption>货品列表</caption>
+      <col>
+      <col bgcolor="red">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>品名</th>
+          <th>进价</th>
+          <th>出价</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>001</th>
+          <td>苹果</td>
+          <td rowspan=2>5</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <th>001</th>
+          <td>桔子</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <th>001</th>
+          <td>香蕉</td>
+          <td>5</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <th>001</th>
+          <td>山竹</td>
+          <td>5</td>
+          <td>8</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <img usemap="#image" width=300 src="https://drscdn.500px.org/photo/174778125/m%3D1170_k%3D1/2841ccf2a3720e8e794a6a6930f6ff2c" alt="owl" title="owl">
+      <map name="image">
+        <area shape="rect" coords="60, 100, 200, 190" href="http://www.mi.com" alt="mi" title="abc" target="_blank">
+        <area shape="circle" coords="130,260,90" href="" alt="top" title="top">
+        <area shape="poly" coords="60,80,190,90,230,270,180,380,25,270" href="" title="">
+      </map>
+      <hr>
+      <a href="http://www.mi.com" target="frame" >点击我会在下面的frame里打开小米商城，但为什么打不开呢？</a>
+      <br>
+      <iframe framborder="1" src="https://nodejs.org/en/" name="frame"><p>您的浏览器不支持此功能</p></iframe>
+      <p>怎样&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这两个字之间空这么大呢？<br>
+      怎样在页面中显示下面内容呢？<br>
+      &lt;span>&lt;/span></p>
     </body>
 </html>
