@@ -9,10 +9,11 @@
     body {
       margin: auto;
     }
-    .b1 {
+    header {
       background-color: black;
+      min-width: 600px;
     }
-    div div {
+    header div {
       color: white;
       margin: auto;
       width: 600px;
@@ -23,44 +24,53 @@
       margin-right: auto;
       margin-left: auto;
     }
-    section {
+    section.se {
       width: 600px;
       margin: auto;
       margin-top: 16px;
     }
-    section#se div:hover {
+    section.se div:hover {
       background-color: red;
     }
-    section#se div {
-      width: 174px;
-      height: 34px;
+    ul {
+      padding-left: 0;
+    }
+    section.se ul li {
+      list-style-type: none;
+      box-sizing: border-box;
+      width: 180px;
+      height: 40px;
       border: 3px solid black;
       background-color: pink;
       text-align: center;
       line-height: 34px;
       margin-bottom: 15px;
     }
-    section#se div:nth-child(3n + 2) {
+    section.se li:nth-child(n + 5) {
       margin-left: 210px;
-      margin-top: -55px;
     }
-    section#se div:nth-child(3n + 3) {
+    section.se li:nth-child(n + 9) {
       margin-left: 420px;
-      margin-top: -55px;
     }
-    .a1 {
-      border-bottom: 1px dotted;
+    section.se li:nth-child(4n + 5) {
+      margin-top: -220px;
     }
-    .a2 {
-      border-bottom: 1px dotted;
+    .link {
+      overflow: hidden;
     }
-    .a3 {
+    div.link ul{
+      list-style-type: none;
+      width: 600px;
+      margin: auto;
+    }
+    div.link ul li {
       border-bottom: 1px dotted;
     }
     .a4 {
-      border-bottom: 1px dotted;
+      margin-bottom: -1px;
     }
-    .c1 {
+    footer {
+      min-width: 600px;
       background-color: rgb(238,130,238);
       text-align:center;
       margin-top: 15px;
@@ -68,29 +78,33 @@
   </style>
 </head>
 <body>
-  <div class="b1"><div>hello world 请调整浏览器窗口大小查看效果</div></div>
+  <header><div>hello world 请调整浏览器窗口大小查看效果</div></header>
   <div class="b2">页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px</div>
-  <section id="se">
-    <div>宽180高40(包含边框)</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>水平间隙30px</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>垂直间隙15px</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>边框宽度3px</div>
-    <div>产品</div>
-    <div>产品</div>
+  <section class="se">
+    <ul>
+      <li>宽180高40(包含边框)</li>
+      <li>水平间隙30px</li>
+      <li>垂直间隙15px</li>
+      <li>边框宽度3px</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+    </ul>
   </section>
-  <section>
-    <div class="a1">link</div>
-    <div class="a2">link</div>
-    <div class="a3">link</div>
-    <div class="a4">link</div>
-    <div>link</div>
-  </section>
-  <div class="c1">©版权所有<br> 本页所有布局均使用块元素</div>
+  <div class="link">
+    <ul>
+      <li><a href="">link</a></li>
+      <li><a href="">link</a></li>
+      <li><a href="">link</a></li>
+      <li><a href="">link</a></li>
+      <li class="a4"><a href="">link</a></li>
+    </ul>
+  </div>
+  <footer>©版权所有<br> 本页所有布局均使用块元素</footer>
 </body>
 </html>
