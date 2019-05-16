@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    div {
+      cursor: pointer;
+      background-image: url(https://abs.twimg.com/a/1557861269/img/animations/web_heart_animation_edge.png?tdsourcetag=s_pcqq_aiomsg);
+      width: 100px;
+      height: 100px;
+    }
+    
+    #cli:checked + label div {
+      background-position: -2800px 0;
+      transition:background-position 0.6s steps(28);
+    }
+
+  </style>
+</head>
+<body>
+  <input hidden style="cursor:pointer" type="checkbox" id="cli">
+  <label for="cli"><div></div></label>
+</body>
+</html>
