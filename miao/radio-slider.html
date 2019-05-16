@@ -11,6 +11,7 @@
       width: 1225px;
       height: 460px;
       margin: auto;
+      overflow: hidden;
     }
 
     input {
@@ -18,16 +19,18 @@
     }
 
     img {
+      left: 100%;
       width: 100%;
       height: 100%;
       position: absolute;
       opacity: 0;
-      pointer-events: none;
+      xpointer-events: none;
       transition: 1s;
     }
 
     input:checked + img {
       opacity: 1;
+      left: 0%;
     }
 
     label {
@@ -45,6 +48,37 @@
       top: 90%;
     }
 
+    .sidebar {
+      position: absolute;
+      background-color: rgb(0,0,0,0.6);
+    }
+
+    ul {
+      xheight: 100%;
+      padding-left: 0;
+      width: 235px;
+      margin: auto;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .sidebar {
+      height: 100%;
+    }
+
+    li:hover {
+      background-color: rgb(255,103,0);
+    }
+
+    li {
+      list-style: none;
+      height: 42px;
+      line-height: 42px;
+      color: white;
+      font-size: 14px;
+      padding-left: 30px;
+    }
+
     /* //////////////////icon */
     input {
       display: none;
@@ -57,8 +91,8 @@
       background: rgb(0,0,0,0.3);
       transition: 0.2s
     }
-    .clickcircle:hover , input:checked + label div {
-      border-color: rgb(117,117,117,0.7);
+    .clickcircle:hover  {
+      border-color: rgb(117,117,117,0.5);
       background-color: #fff;
     }
 
@@ -85,6 +119,20 @@
       <label for="a4"><div class="clickcircle"></div></label>
       <label for="a5"><div class="clickcircle"></div></label>
     </div>
+    <div class="sidebar">
+        <ul>
+          <li>手机 电话卡</li>
+          <li>电视 盒子</li>
+          <li>笔记本 平板</li>
+          <li>家电 插线板</li>
+          <li>出行 穿戴</li>
+          <li>智能 路由器</li>
+          <li>电源 配件</li>
+          <li>健康 儿童</li>
+          <li>耳机 音箱</li>
+          <li>生活 箱包</li>
+        </ul>
+      </div>
   </div>
 
 </body>
