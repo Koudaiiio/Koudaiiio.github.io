@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    input {
+  display: none;
+    }
+    .bg {
+      cursor: pointer;
+      width: 400px;
+      height: 200px;
+      xborder: 1px solid;
+      border-radius: 100px;
+      background-color: rgb(221,221,221);
+      position: absolute;
+      transition: 0.7s;
+    }
+    input:checked + label div.bg {
+      background-color: rgb(110,221,94);
+    }
+    .cir {
+      height: 170px;
+      width: 170px;
+      xborder: 1px solid;
+      border-radius: 85px;
+      background-color: white;
+      margin-left: 20px;
+      margin-top: 15px;
+      box-shadow: 0 1px 5px;
+      transition: 0.7s;
+    }
+    input:checked + label div.cir {
+      margin-left: 210px;
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="ck">
+  <label for="ck"><div class="bg"><div class="cir"></div></div></label>
+</body>
+</html>

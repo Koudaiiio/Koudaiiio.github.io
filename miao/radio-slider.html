@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>radio-slider</title>
+  <style>
+    .pic {
+      position: relative;
+      width: 1225px;
+      height: 460px;
+      margin: auto;
+    }
+
+    input {
+      position: absolute;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      transition: 1s;
+    }
+
+    input:checked + img {
+      opacity: 1;
+    }
+
+    label {
+      width: 10px;
+      height: 10px;
+      cursor: pointer;
+      xborder: 1px solid;
+      display: inline-block;
+      margin: 3px;
+    }
+
+    .click {
+      position: absolute;
+      left: 87%;
+      top: 90%;
+    }
+
+    /* //////////////////icon */
+    input {
+      display: none;
+    }
+    .clickcircle {
+      width: 6px;
+      height: 6px;
+      border-radius: 10px;
+      border: 2px solid rgb(255,255,255,0.3) ;
+      background: rgb(0,0,0,0.3);
+      transition: 0.2s
+    }
+    .clickcircle:hover , input:checked + label div {
+      border-color: rgb(117,117,117,0.7);
+      background-color: #fff;
+    }
+
+    /* ////////////////////////icon */
+
+  </style>
+</head>
+<body>
+  <div class="pic">
+    <input checked type="radio" name="pic" id="a1">
+    <img src="https://i1.mifile.cn/a4/xmad_15566146318197_mAghl.jpg" alt="">
+    <input type="radio" name="pic" id="a2">
+    <img src="https://i1.mifile.cn/a4/xmad_15529884424562_HKYaG.jpg" alt="">
+    <input type="radio" name="pic" id="a3">
+    <img src="https://i1.mifile.cn/a4/xmad_15579184778872_ECdvK.jpg" alt="">
+    <input type="radio" name="pic" id="a4">
+    <img src="https://i1.mifile.cn/a4/xmad_15548066591437_Stxlj.jpg" alt="">
+    <input type="radio" name="pic" id="a5">
+    <img src="https://i1.mifile.cn/a4/xmad_15476942061027_STEvM.jpg" alt="">
+    <div class="click">
+      <label for="a1"><div class="clickcircle"></div></label>
+      <label for="a2"><div class="clickcircle"></div></label>
+      <label for="a3"><div class="clickcircle"></div></label>
+      <label for="a4"><div class="clickcircle"></div></label>
+      <label for="a5"><div class="clickcircle"></div></label>
+    </div>
+  </div>
+
+</body>
+</html>
