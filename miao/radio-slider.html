@@ -42,6 +42,14 @@
       margin: 3px;
     }
 
+    label.no {
+      position: absolute;
+      margin:0;
+      width:0;
+      height:0;
+      top:0;
+    }
+
     .click {
       position: absolute;
       left: 87%;
@@ -78,6 +86,52 @@
       font-size: 14px;
       padding-left: 30px;
     }
+
+    .leftindicator .arrow {
+      width: 40px;
+      height: 70px;
+      xbackground-color: gray;
+      position: absolute;
+      left: 0;
+    }
+
+    .leftindicator .arrow:hover {
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .leftindicator .arrow:hover .icon-arrow{
+      border-color: transparent transparent white white;
+    }
+
+    .rightindicator .arrow {
+      width: 40px;
+      height: 70px;
+      xbackground-color: gray;
+      position: absolute;
+      right: 0;
+    }
+
+    .rightindicator .arrow:hover {
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .rightindicator .arrow:hover .icon-arrow1{
+      border-color: transparent transparent white white;
+    }
+
+    .leftindicator {
+      position: absolute;
+      left: 235px;
+      top: calc(50% - 40px);
+    }
+
+    .rightindicator {
+      position: absolute;
+      right: 0;
+      top: calc(50% - 40px);
+    }
+
+    
 
     /* //////////////////icon */
     input {
@@ -122,7 +176,70 @@
       background-color: #fff;
     }
 
+    .icon-arrow {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      border: 3px solid ;
+      transform: rotate(45deg);
+      border-color: transparent transparent #BBB #BBB;
+      margin-top: 25px;
+      margin-left: 10px;
+    }
+    
+
+    .icon-arrow1 {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      border: 3px solid ;
+      transform: rotate(225deg);
+      border-color: transparent transparent #BBB #BBB;
+      margin-top: 25px;
+      margin-left: 5px;
+    }
     /* ////////////////////////icon */
+
+    input#a1:checked ~ .leftindicator label:nth-child(1) div {
+      z-index: 5;
+    }
+
+    input#a2:checked ~ .leftindicator label:nth-child(2) div {
+      z-index: 5;
+    }
+
+    input#a3:checked ~ .leftindicator label:nth-child(3) div {
+      z-index: 5;
+    }
+
+    input#a4:checked ~ .leftindicator label:nth-child(4) div {
+      z-index: 5;
+    }
+
+    input#a5:checked ~ .leftindicator label:nth-child(5) div {
+      z-index: 5;
+    }
+
+    input#a1:checked ~ .rightindicator label:nth-child(1) div {
+      z-index: 5;
+    }
+
+    input#a2:checked ~ .rightindicator label:nth-child(2) div {
+      z-index: 5;
+    }
+
+    input#a3:checked ~ .rightindicator label:nth-child(3) div {
+      z-index: 5;
+    }
+
+    input#a4:checked ~ .rightindicator label:nth-child(4) div {
+      z-index: 5;
+    }
+
+    input#a5:checked ~ .rightindicator label:nth-child(5) div {
+      z-index: 5;
+    }
+
 
   </style>
 </head>
@@ -144,6 +261,20 @@
       <label class="l3" for="a3"><div class="clickcircle"></div></label>
       <label class="l4" for="a4"><div class="clickcircle"></div></label>
       <label class="l5" for="a5"><div class="clickcircle"></div></label>
+    </div>
+    <div class="leftindicator">
+      <label class= "no" for="a5"><div class="arrow"><i class="icon-arrow"></i></div></label>
+      <label class= "no" for="a1"><div class="arrow"><i class="icon-arrow"></i></div></label>
+      <label class= "no" for="a2"><div class="arrow"><i class="icon-arrow"></i></div></label>
+      <label class= "no" for="a3"><div class="arrow"><i class="icon-arrow"></i></div></label>
+      <label class= "no" for="a4"><div class="arrow"><i class="icon-arrow"></i></div></label>
+    </div>
+    <div class="rightindicator">
+      <label class= "no" for="a2"><div class="arrow"><i class="icon-arrow1"></i></div></label>
+      <label class= "no" for="a3"><div class="arrow"><i class="icon-arrow1"></i></div></label>
+      <label class= "no" for="a4"><div class="arrow"><i class="icon-arrow1"></i></div></label>
+      <label class= "no" for="a5"><div class="arrow"><i class="icon-arrow1"></i></div></label>
+      <label class= "no" for="a1"><div class="arrow"><i class="icon-arrow1"></i></div></label>
     </div>
     <div class="sidebar">
         <ul>
