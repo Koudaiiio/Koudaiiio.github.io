@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html ,body ,div {
+      height: 100%;
+      margin: 0;
+    }
+
+    aside {
+      width: 200px;
+      background-color: gray;
+      height: 100%;
+      float: left;
+      box-shadow: inset -2px 0 4px;
+    }
+
+    section {
+      width: calc(100% - 600px);
+      height: 100%;
+      float: left;
+      background-color: #777;
+    }
+
+    header {
+      height: 75px;
+      width: 100%;
+      background-color: tan;
+      float: right;
+    }
+
+    main {
+      width: 100%;
+      height: calc(100% - 75px);
+      background-color: white;
+      float: right;
+      box-shadow: inset -2px 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <aside></aside>
+    <section>
+      <header></header>
+      <main></main>
+    </section>
+    <aside></aside>
+    <aside></aside>
+  </div>
+</body>
+</html>
