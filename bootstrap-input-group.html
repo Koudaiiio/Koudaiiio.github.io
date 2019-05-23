@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bootstrap-input-group</title>
+  <style>
+    html ,body {
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    section {
+      width: 80%;
+      margin: auto;
+      border: 1px solid #AAA;
+      padding: 20px;
+    }
+
+    div.t1 ,div.t2 {
+      width: 100%;
+      display: table;
+      border-collapse: separete;
+    }
+
+    div div {
+      line-height: 1.5;
+      padding: 6px 12px;
+      display: table-cell;
+      background-color: #E9ECEF;
+      box-sizing: border-box;
+      border: 1px solid #CED4DA;
+      width: 1%;
+    }
+
+    .t1 div {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .t1 input {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    input {
+      font-size: initial;
+      line-height: calc(1.5em + 1px);
+      padding: 6px 12px;
+      display: table-cell;
+      background-color: white;
+      border: 1px solid #CED4DA;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .t2 div {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .t2 input {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .t2 {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="t1">
+      <div>@@@@@@@</div>
+      <input type="text" placeholder="Username">
+    </div>
+    <div class="t2">
+      <input type="text" placeholder="Recipient's username">
+      <div>@example.com</div>
+    </div>
+  </section>
+</body>
+</html>

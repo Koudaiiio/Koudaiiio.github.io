@@ -15,15 +15,18 @@
       width: 200px;
       background-color: gray;
       height: 100%;
-      float: left;
+      float: right;
       box-shadow: inset -2px 0 4px;
     }
 
-    section {
-      width: calc(100% - 600px);
-      height: 100%;
+    aside:first-child {
       float: left;
+    }
+
+    section {
+      height: 100%;
       background-color: #777;
+      overflow: hidden;
     }
 
     header {
@@ -45,12 +48,12 @@
 <body>
   <div>
     <aside></aside>
+    <aside></aside>
+    <aside></aside>
     <section>
       <header></header>
       <main></main>
     </section>
-    <aside></aside>
-    <aside></aside>
   </div>
 </body>
 </html>
