@@ -15,7 +15,7 @@
       height: 798px;
       background-image: url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-4.jpg);
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: 72% 72%;
       background-size: cover;
     }
 
@@ -26,18 +26,19 @@
       background-size: cover;
       float: left;
       box-sizing: border-box;
+      border: 1px solid white;
       border-top: 2px solid white;
-      border-left: 1px solid white;
-      border-right: 1px solid white;
     }
 
-    main div:nth-of-type(1) {
-      border-left: none;
+    main {
+      margin-left: -1px;
+      margin-right: -1px;
     }
 
-    main div:nth-of-type(4) {
-      border-right: none;
+    section {
+      overflow: hidden;
     }
+
     @media (max-width: 1080px) {
       header {
         height: 640px;
@@ -55,12 +56,14 @@
 </head>
 <body>
   <header></header>
-  <main>
-    <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-01.jpg)"></div>
-    <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-02.jpg)"></div>
-    <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-03.jpg)"></div>
-    <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-04.jpg)"></div>
-  </main>
+  <section>
+    <main>
+      <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-01.jpg)"></div>
+      <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-02.jpg)"></div>
+      <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-03.jpg)"></div>
+      <div style="background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-04.jpg)"></div>
+    </main>
+  </section>
   <div class="container">
     <div class="content">
       <div></div>
