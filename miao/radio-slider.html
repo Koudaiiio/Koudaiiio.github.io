@@ -14,11 +14,11 @@
       overflow: hidden;
     }
 
-    input {
+    input.sliderip {
       position: absolute;
     }
 
-    img {
+    img.sliderpic {
       left: 100%;
       width: 100%;
       height: 100%;
@@ -28,7 +28,7 @@
       transition: 1s;
     }
 
-    input:checked + img {
+    input.sliderip:checked + img {
       opacity: 1;
       left: 0%;
     }
@@ -61,7 +61,7 @@
       background-color: rgb(0,0,0,0.6);
     }
 
-    ul {
+    ul.sliderul {
       xheight: 100%;
       padding-left: 0;
       width: 235px;
@@ -74,11 +74,11 @@
       height: 100%;
     }
 
-    li:hover {
+    li.sliderli:hover {
       background-color: rgb(255,103,0);
     }
 
-    li {
+    li.sliderli {
       list-style: none;
       height: 42px;
       line-height: 42px;
@@ -134,7 +134,7 @@
     
 
     /* //////////////////icon */
-    input {
+    input.sliderip {
       display: none;
     }
     .clickcircle {
@@ -245,16 +245,16 @@
 </head>
 <body>
   <div class="pic">
-    <input checked type="radio" name="pic" id="a1">
-    <img src="https://i1.mifile.cn/a4/xmad_15566146318197_mAghl.jpg" alt="">
-    <input type="radio" name="pic" id="a2">
-    <img src="https://i1.mifile.cn/a4/xmad_15529884424562_HKYaG.jpg" alt="">
-    <input type="radio" name="pic" id="a3">
-    <img src="https://i1.mifile.cn/a4/xmad_15579184778872_ECdvK.jpg" alt="">
-    <input type="radio" name="pic" id="a4">
-    <img src="https://i1.mifile.cn/a4/xmad_15548066591437_Stxlj.jpg" alt="">
-    <input type="radio" name="pic" id="a5">
-    <img src="https://i1.mifile.cn/a4/xmad_15476942061027_STEvM.jpg" alt="">
+    <input class="sliderip" checked type="radio" name="pic" id="a1">
+    <img class="sliderpic" src="https://i1.mifile.cn/a4/xmad_15566146318197_mAghl.jpg" alt="">
+    <input class="sliderip" type="radio" name="pic" id="a2">
+    <img class="sliderpic" src="https://i1.mifile.cn/a4/xmad_15529884424562_HKYaG.jpg" alt="">
+    <input class="sliderip" type="radio" name="pic" id="a3">
+    <img class="sliderpic" src="https://i1.mifile.cn/a4/xmad_15579184778872_ECdvK.jpg" alt="">
+    <input class="sliderip" type="radio" name="pic" id="a4">
+    <img class="sliderpic" src="https://i1.mifile.cn/a4/xmad_15548066591437_Stxlj.jpg" alt="">
+    <input class="sliderip" type="radio" name="pic" id="a5">
+    <img class="sliderpic" src="https://i1.mifile.cn/a4/xmad_15476942061027_STEvM.jpg" alt="">
     <div class="click">
       <label class="l1" for="a1"><div class="clickcircle"></div></label>
       <label class="l2" for="a2"><div class="clickcircle"></div></label>
@@ -277,17 +277,17 @@
       <label class= "no" for="a1"><div class="arrow"><i class="icon-arrow1"></i></div></label>
     </div>
     <div class="sidebar">
-        <ul>
-          <li>手机 电话卡</li>
-          <li>电视 盒子</li>
-          <li>笔记本 平板</li>
-          <li>家电 插线板</li>
-          <li>出行 穿戴</li>
-          <li>智能 路由器</li>
-          <li>电源 配件</li>
-          <li>健康 儿童</li>
-          <li>耳机 音箱</li>
-          <li>生活 箱包</li>
+        <ul class="sliderul">
+          <li class="sliderli">手机 电话卡</li>
+          <li class="sliderli">电视 盒子</li>
+          <li class="sliderli">笔记本 平板</li>
+          <li class="sliderli">家电 插线板</li>
+          <li class="sliderli">出行 穿戴</li>
+          <li class="sliderli">智能 路由器</li>
+          <li class="sliderli">电源 配件</li>
+          <li class="sliderli">健康 儿童</li>
+          <li class="sliderli">耳机 音箱</li>
+          <li class="sliderli">生活 箱包</li>
         </ul>
       </div>
   </div>
