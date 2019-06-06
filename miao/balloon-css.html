@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Balloon-css</title>
+  <link rel="stylesheet" href="balloon.css">
+  <style>
+    body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      padding-top: 6rem;
+      background-color: #c746a5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color:orange;
+      font-weight: bold;
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size:  2rem;
+      font-weight: 100;
+    }
+
+    p {
+      font-size: 1.3rem;
+      font-weight: 200;
+      line-height: 3rem;
+      margin: 1rem 0;
+    }
+
+    .samples {
+      margin-top: 6rem;
+    }
+
+    code {
+      background: rgba(255,255,255,0.5);
+      padding: 0.3rem;
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    .sample {
+      display: flex;
+      margin-bottom: 1.5rem;
+    }
+
+    .sample pre {
+      display: inline-block;
+      width: 60%;
+      font-size: 0;
+    }
+    
+    .sample pre code {
+      display: block;
+      background-color: white;
+      color: #111;
+      font-size: 14px;
+      padding: 2rem 1rem;
+      overflow-x: auto;
+    }
+
+    .sample .example {
+      display: inline-block;
+      width: 30%;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .sample .example button {
+      display: inline-block;
+      min-width: 160px;
+      text-align: center;
+      color: #fff;
+      background: #ff3d2e;
+      padding: 1.2rem 2.8rem;
+      font-size: 1rem;
+      margin-top: 1.2rem;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <div class="header-block">
+        <h1>Balloon.css</h1>
+        <h2>Simple tooltips made of pure CSS</h2>
+        <p>Balloon.css let you add tooltips to elements <strong>without JavaScript</strong> and in just a few lines of CSS.</p>
+      </div>
+      <div class="samples">
+        <h2>Positioning</h2>
+        <p>For positioning, use <code>data-balloon-pos</code> attribute with one of the values: <code>up</code>, <code>down</code>, <code>left</code> or <code>right</code></p>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon="Whats up!" data-balloon-pos="up">Hover me!&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon="Whats up!" data-balloon-pos="up">Hover me!</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon="Whats up!" data-balloon-pos="left">Hover me!&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon="Whats up!" data-balloon-pos="left">Hover me!</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon="Whats up!" data-balloon-pos="right">Hover me!&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon="Whats up!" data-balloon-pos="right">Hover me!</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon="Whats up!" data-balloon-pos="down">Hover me!&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon="Whats up!" data-balloon-pos="down">Hover me!</button>
+          </div>
+        </div>
+        <h2>Length</h2>
+        <p>By default, tooltips will always remain single-line no matter their length. You can change this behavior by using the attribute <code>data-balloon-length</code> with one of the values: <code>small</code>, <code>medium</code>, <code>large</code> or <code>fit</code>.</p>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon-length="small" data-balloon="Hi." data-balloon-pos="up">I'm a small tooltip&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon-length="small" data-balloon="Hi." data-balloon-pos="up">I'm a small tooltip</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon-length="medium" data-balloon="Now that's a super big text we have over here right? Lorem ipsum dolor sit I'm done." data-balloon-pos="up">I'm a medium tooltip.&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon-length="medium" data-balloon="Now that's a super big text we have over here right? Lorem ipsum dolor sit I'm done." data-balloon-pos="up">I'm a medium tooltip.</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon-length="large" data-balloon="What about something really big? This may surpass your window dimensions. Imagine you're on that boring class with that boring teacher and you didn't slept so well last night. Suddenly you're sleeping in class. Can you believe it?!" data-balloon-pos="up">I'm a large tooltip.&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon-length="large" data-balloon="What about something really big? This may surpass your window dimensions. Imagine you're on that boring class with that boring teacher and you didn't slept so well last night. Suddenly you're sleeping in class. Can you believe it?!" data-balloon-pos="up">I'm a large tooltip.</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon-length="xlarge" data-balloon="What about something really big? This may surpass your window dimensions. Imagine you're on that boring class with that boring teacher and you didn't slept so well last night. Suddenly you're sleeping in class. Can you believe it?!" data-balloon-pos="up">I'm a Xlarge tooltip.&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon-length="xlarge" data-balloon="What about something really big? This may surpass your window dimensions. Imagine you're on that boring class with that boring teacher and you didn't slept so well last night. Suddenly you're sleeping in class. Can you believe it?!" data-balloon-pos="up">I'm a Xlarge tooltip.</button>
+          </div>
+        </div>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon-length="fit" data-balloon="What about something really big? This may surpass your window dimensions. Imagine you're on that boring class with that boring teacher and you didn't slept so well last night. Suddenly you're sleeping in class. Can you believe it?!" data-balloon-pos="up">My width will fit to element&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon-length="fit" data-balloon="What about something really big? This may surpass your window dimensions. Imagine you're on that boring class with that boring teacher and you didn't slept so well last night. Suddenly you're sleeping in class. Can you believe it?!" data-balloon-pos="up">My width will fit to element</button>
+          </div>
+        </div>
+        <h2>Showing tooltips programatically</h2>
+        <p>If you want to show tooltips even when user interaction isn't happening, you can simply use the <code>data-balloon-visible</code> attribute:</p>
+        <div class="sample">
+          <pre class="language-markup">
+            <code class="language-markup">&lt;button data-balloon-visible data-balloon="I am always visible!" data-balloon-pos="up">My width will fit to element&lt;/button></code>
+          </pre>
+          <div class="example">
+            <button data-balloon-visible data-balloon="I am always visible!" data-balloon-pos="up">Always visible!</button>
+          </div>
+        </div>
+        <p>The attribute <code>data-balloon-visible</code> can be easily added via JavaScript (e.g. <code>.setAttribute()</code>), enableing you to show tooltips whenever needed.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
