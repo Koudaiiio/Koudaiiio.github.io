@@ -84,42 +84,51 @@
   transform: translate(0,-50%);
 }
 
-[data-balloon-pos]:hover::before, [data-balloon-pos]:hover::after {
+[data-balloon-pos]:hover::before, 
+[data-balloon-pos]:hover::after {
   opacity: 1;
 }
 
-[data-balloon-pos="up"]:hover::before, [data-balloon-pos="up"]:hover::after {
+[data-balloon-pos="up"]:hover::before, 
+[data-balloon-pos="up"]:hover::after {
   transform: translate(-50%,-15px);
 }
 
-[data-balloon-pos="down"]:hover::before, [data-balloon-pos="down"]:hover::after {
+[data-balloon-pos="down"]:hover::before, 
+[data-balloon-pos="down"]:hover::after {
   transform: translate(-50%,15px);
 }
 
-[data-balloon-pos="left"]:hover::before, [data-balloon-pos="left"]:hover::after {
+[data-balloon-pos="left"]:hover::before, 
+[data-balloon-pos="left"]:hover::after {
   transform: translate(-15px,-50%);
 }
 
-[data-balloon-pos="right"]:hover::before, [data-balloon-pos="right"]:hover::after {
+[data-balloon-pos="right"]:hover::before, 
+[data-balloon-pos="right"]:hover::after {
   transform: translate(15px,-50%);
 }
 
-[data-balloon-pos="up"][data-balloon-visible]::before, [data-balloon-pos="up"][data-balloon-visible]::after {
+[data-balloon-pos="up"][data-balloon-visible]::before, 
+[data-balloon-pos="up"][data-balloon-visible]::after {
   opacity: 1;
   transform: translate(-50%,-15px);
 }
 
-[data-balloon-pos="down"][data-balloon-visible]::before, [data-balloon-pos="down"][data-balloon-visible]::after {
+[data-balloon-pos="down"][data-balloon-visible]::before, 
+[data-balloon-pos="down"][data-balloon-visible]::after {
   opacity: 1;
   transform: translate(-50%,15px)
 }
 
-[data-balloon-pos="left"][data-balloon-visible]::before, [data-balloon-pos="left"][data-balloon-visible]::after {
+[data-balloon-pos="left"][data-balloon-visible]::before, 
+[data-balloon-pos="left"][data-balloon-visible]::after {
   opacity: 1;
   transform: translate(-15px,-50%);
 }
 
-[data-balloon-pos="right"][data-balloon-visible]::before, [data-balloon-pos="right"][data-balloon-visible]::after {
+[data-balloon-pos="right"][data-balloon-visible]::before, 
+[data-balloon-pos="right"][data-balloon-visible]::after {
   opacity: 1;
   transform: translate(15px,-50%);
 }
@@ -146,4 +155,25 @@
 
 [data-balloon-length="fit"]::after {
   width: 100%;
+}
+
+/* 无pos属性时 */
+[data-balloon]:not([data-balloon-pos])::before {
+  border-bottom: 0;
+  border-color: rgb(0,0,0,.9) transparent;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+[data-balloon]:not([data-balloon-pos])::after {
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+[data-balloon]:not([data-balloon-pos]):hover::before, 
+[data-balloon]:not([data-balloon-pos]):hover::after {
+  transform: translate(-50%,-15px);
+  opacity: 1;
 }

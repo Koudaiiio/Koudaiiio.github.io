@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Regular tetrahedron</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes rotate{
+      to {
+        transform: rotatex(720deg) rotatey(360deg);
+      }
+    }
+
+    section {
+      transform-style: preserve-3d;
+      transition: 2s;
+      margin-top: 200px;
+      margin-left: 50px;
+      transform-origin: 200px 230.94px 81.65px;
+      animation: rotate 8s linear infinite
+    }
+
+    section:hover {
+      animation-play-state: paused;
+    }
+
+    div {
+      width: 0;
+      border: 200px solid;
+      border-color: black transparent;
+      border-top: 0;
+      border-bottom-width: 346.41px;
+      transition: 2s;
+      position: absolute;
+    }
+
+    [h] {
+      border-color: #7ff transparent;
+    }
+
+    [i] {
+      border-color: rgba(255,0,0) transparent;
+      transform-origin: left bottom;
+      transform: rotate3d(200,-346.41,0,70.5288deg);
+    }
+
+    [j] {
+      border-color: rgba(0,255,0) transparent;
+      transform-origin: center 0;
+      transform: rotate3d(200,346.41,0,70.5288deg)
+    }
+
+    [k] {
+      border-color: rgba(255,0,255) transparent;
+      transform-origin: left bottom;
+      transform: rotatex(-70.5288deg)
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div h></div>
+    <div i></div>
+    <div j></div>
+    <div k></div>
+  </section>
+</body>
+</html>

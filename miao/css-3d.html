@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cube</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes rotate {
+      to { transform: rotatex(360deg) rotatey(360deg);}
+    }
+
+
+    section {
+      transform-style: preserve-3d;
+      transform-origin: 100px 100px 100px;
+      transition: 2s;
+      margin: 150px;
+      margin-top: 300px;
+      animation: rotate 6s linear infinite
+    }
+
+
+
+    section:hover {
+      animation-play-state: paused;
+    }
+
+    div {
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      vertical-align: middle;
+      transition: 2s;
+      position: absolute;
+      font-size: 20px;
+    }
+
+    [a] {
+      background-color: #A45a;
+    }
+
+    [b] {
+      transform-origin: 0 0;
+      transform: rotatex(90deg);
+      background-color: #123a;
+    }
+
+    [c] {
+      transform: translatez(200px);
+      background-image: 
+      linear-gradient(to right bottom,green ,white ),
+      linear-gradient(to right top, yellow , rgb(0,255,255));
+      background-blend-mode: screen;
+    }
+
+    [d] {
+      transform-origin: 0 100%;
+      transform: rotatex(-90deg);
+      background-image: 
+        linear-gradient(to right bottom,rgb(255,255,0),transparent),
+        linear-gradient(to right top, red , transparent),
+        linear-gradient(to left bottom, white,transparent),
+        linear-gradient(to left top,rgb(255,0,255),transparent);
+      background-blend-mode: screen;
+    }
+
+    [e] {
+      transform-origin: 0 0;
+      transform: rotatey(-90deg);
+      background-color: rgba(0,255,0,.5);
+    }
+
+    [f] {
+      transform-origin: 100% 0;
+      transform: rotatey(90deg);
+      background-image: 
+        linear-gradient(to right bottom, rgb(0,255,255), rgb(255,0,255)),
+        linear-gradient(to right top, white, blue);
+      background-blend-mode: screen;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div a></div>
+    <div b></div>
+    <div c></div>
+    <div d></div>
+    <div e></div>
+    <div f></div>
+  </section>
+</body>
+</html>
