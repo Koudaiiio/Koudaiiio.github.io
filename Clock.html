@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Clock</title>
+  <style>
+    html ,body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      height: 100%;
+      display: flex;
+    }  
+
+    main {
+      height: 500px;
+      width: 500px;
+      margin: auto;
+      border-radius: 50%;
+      box-shadow: 0 0 5px;
+      position: relative;
+      display: flex;
+    }
+
+    main * {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      position: absolute;
+    }
+
+    span {
+      width: 30px;
+      height: 30px;
+      font-size: 26px;
+      text-align: center;
+      top: 0;
+    }
+
+    .hour div {
+      height: 160px;
+      width: 8px;
+      background-color: black;
+      border-radius: 50% 50% 0 0;
+      transform: translatey(-45%);
+      transform-origin: 50% 95%;
+      animation: rotate 86400s infinite;
+    }
+
+    .minute div {
+      height: 190px;
+      width: 6px;
+      background-color: #D75555;
+      border-radius: 50% 50% 0 0;
+      transform: translatey(-40%);
+      transform-origin: 50% 90%;
+      animation: rotate 3600s infinite;
+    }
+
+    .second div {
+      height: 240px;
+      width: 4px;
+      background-color: orange;
+      border-radius: 50% 50% 0 0;
+      transform: translatey(-30%);
+      transform-origin: 50% 80%;
+      animation: rotate 60s steps(60) infinite;
+    }
+
+    .second {
+      animation: swing 1s ease-out infinite;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: translatey(-30%) rotate(360deg);
+      }
+    }
+
+    @keyframes swing {
+      from {transform: rotate(0);}
+      5% {transform: rotate(2deg);}
+      10% {transform: rotate(0);}
+      15% {transform: rotate(-1deg);}
+      20% {transform: rotate(0);}
+      to {transform: rotate(0);}
+    }
+
+    .circle {
+      width: 8px;
+      height: 8px;
+      border: 3px solid #DDD;
+      background-color: black;
+      border-radius:50%;
+    }
+
+    span:nth-of-type(1) {
+      transform: rotate(-90deg) translate(220px) rotate(90deg);
+    }
+
+    span:nth-of-type(2) {
+      transform: rotate(-60deg) translate(220px) rotate(60deg);
+    }
+
+    span:nth-of-type(3) {
+      transform: rotate(-30deg) translate(220px) rotate(30deg);
+    }
+
+    span:nth-of-type(4) {
+      transform: rotate(0deg) translate(220px) rotate(0deg);
+    }
+
+    span:nth-of-type(5) {
+      transform: rotate(30deg) translate(220px) rotate(-30deg);
+    }
+
+    span:nth-of-type(6) {
+      transform: rotate(60deg) translate(220px) rotate(-60deg);
+    }
+
+    span:nth-of-type(7) {
+      transform: rotate(90deg) translate(220px) rotate(-90deg);
+    }
+
+    span:nth-of-type(8) {
+      transform: rotate(120deg) translate(220px) rotate(-120deg);
+    }
+
+    span:nth-of-type(9) {
+      transform: rotate(150deg) translate(220px) rotate(-150deg);
+    }
+
+    span:nth-of-type(10) {
+      transform: rotate(180deg) translate(220px) rotate(-180deg);
+    }
+
+    span:nth-of-type(11) {
+      transform: rotate(210deg) translate(220px) rotate(-210deg);
+    }
+
+    span:nth-of-type(12) {
+      transform: rotate(240deg) translate(220px) rotate(-240deg);
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <main>
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+      <span>6</span>
+      <span>7</span>
+      <span>8</span>
+      <span>9</span>
+      <span>10</span>
+      <span>11</span>
+      <span>12</span>
+      <div class="hour"><div></div></div>
+      <div class="minute"><div></div></div>
+      <div class="second"><div></div></div>
+      <div class="circle"></div>
+    </main>
+  </section>
+</body>
+</html>
