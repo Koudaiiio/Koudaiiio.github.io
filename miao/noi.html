@@ -182,114 +182,239 @@
   }
 </script>
 
-<script xtype='x' id="ch0104/04">
-  
+<script type='x' id="ch0104/04">
+  var x = prompt('input character')
+    , y = +x.charCodeAt()
+  if (y % 2 == 0) {
+    console.log('NO')
+  } else {
+    console.log('YES')
+  }
 </script>
 
-<script xtype='x' id="ch0104/05">
-
+<script type='x' id="ch0104/05">
+  var x = +prompt('x')
+    , y = +prompt('y')
+  if (x > y) {
+    console.log('>')
+  } else {
+    if (x == y) {
+      console.log('=')
+    } else {
+      console.log('<')
+    }
+  }
 </script>
 
-<script xtype='x' id="ch0104/06">
-
+<script type='x' id="ch0104/06">
+  var x = +prompt('x')
+  if (x / 100 < 1 && x / 10 > 1) {
+    console.log(1)
+  } else {
+    console.log(0)
+  }
 </script>
 
-<script xtype='x' id="ch0104/07">
-
+<script type='x' id="ch0104/07">
+  var x = +prompt('x')
+    , y = +prompt('y')
+  if (x >= 10 || y >= 20) {
+    console.log(1)
+  } else {
+    console.log(0)
+  }
 </script>
 
-<script xtype='x' id="ch0104/08">
-
+<script type='x' id="ch0104/08">
+  var n = +prompt('n')
+  if (n % 3 == 0 && n % 5 == 0) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
 </script>
 
-<script xtype='x' id="ch0104/09">
-
+<script type='x' id="ch0104/09">
+  var n = +prompt('n')
+  switch (true) {
+    case n % 3 == 0 && n % 5 == 0 && n % 7 == 0:
+      console.log('3 ' + '5 ' + '7');
+      break;
+    case n % 3 == 0 && n % 5 == 0 && n % 7 != 0:
+      console.log('3 ' + '5');
+      break;
+    case n % 3 == 0 && n % 5 != 0 && n % 7 == 0:
+      console.log('3 ' + '7');
+      break;
+    case n % 3 != 0 && n % 5 == 0 && n % 7 == 0:
+      console.log('5 ' + '7');
+      break;
+    case n % 3 == 0 && n % 5 != 0 && n % 7 != 0:
+      console.log(3);
+      break;
+    case n % 3 != 0 && n % 5 == 0 && n % 7 != 0:
+      console.log(5);
+      break;
+    case n % 3 != 0 && n % 5 != 0 && n % 7 == 0:
+      console.log(7);
+      break;
+    default:
+      console.log('n');
+  }
 </script>
 
-<script xtype='x' id="ch0104/10">
-
+<script type='x' id="ch0104/10">
+  var x = +prompt('scores1')
+    , y = +prompt('scores2')
+    , z = (x < 60 && y >= 60) || (x >= 60 && y < 60) ? '1' : '0'
+    console.log(z)
 </script>
 
-<script xtype='x' id="ch0104/11">
-
+<script type='x' id="ch0104/11">
+  var x = +prompt('date')
+  if (x != 1 && x != 3 && x != 5) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
 </script>
 
-<script xtype='x' id="ch0104/12">
-
+<script type='x' id="ch0104/12">
+  var x = +prompt('distance')
+    , a = 50 + x / 3
+    , b = x / 1.2
+  if (a > b) {
+    console.log('Walk')
+  } else {
+    if (a < b) {
+      console.log('Bike')
+    } else {
+      console.log('All')
+    }
+  }
 </script>
 
-<script xtype='x' id="ch0104/13">
-
+<script type='x' id="ch0104/13">
+  var n = +prompt('n')
+    , a = 2.5 - n
+    , b = 2 - 1.5 * (n - 3) * (n - 3)
+    , c = n / 2 - 1.5
+  if (0 <= n && n< 5) {
+    console.log(a.toFixed(3))
+  } else {
+    if (5 <= n && n < 10) {
+      console.log(b.toFixed(3))
+    } else {
+      console.log(c.toFixed(3))
+    }
+  }
 </script>
 
-<script xtype='x' id="ch0104/14">
-
+<script type='x' id="ch0104/14">
+  var a = +prompt('g')
+    , b = prompt('y or n')
+    , c = (a - 1000) / 500
+  if (a <= 1000) {
+    var x = 8
+  } else {
+    var x = 8 + Math.ceil(c) * 4
+  }
+  if (b == 'y') {
+    var y = 5
+  } else if (b == 'n') {
+    var y = 0
+  }
+  console.log(x + y)
 </script>
 
-<script xtype='x' id="ch0104/15">
-
+<script type='x' id="ch0104/15">
+  var x = +prompt('x')
+    , y = +prompt('y')
+    , z = +prompt('z')
+  if (x <= y) {
+    if (z <= y) {
+      console.log(y)
+    } else {
+      console.log(z)
+    }
+  } else {
+    if(x >= z) {
+      console.log(x)
+    } else {
+      console.log(z)
+    }
+  }
 </script>
 
-<script xtype='x' id="ch0104/16">
-
+<script type='x' id="ch0104/16">
+  var a = +prompt('a')
+    , b = +prompt('b')
+    , c = +prompt('c')
+  if (a + b > c && b + c > a && a + c > b) {
+    console.log('yes')
+  } else {
+    console.log('no')
+  }
 </script>
 
-<script xtype='x' id="ch0104/17">
-
+<script type='x' id="ch0104/17">
+  var x = +prompt('input year')
+  var z = x % 4 == 0 && (x % 400 == 0 || x % 100 != 0) && x % 3200 != 0 ? 'Y' : 'N'
+  console.log(z)
 </script>
 
-<script xtype='x' id="ch0104/18">
-
+<script type='x' id="ch0104/18">
+  var x = +prompt('x')
+    , y = +prompt('y')
+    , z = (-1 <= x && x <= 1) && (-1 <= y && y <= 1) ? 'yes' : 'no'
+  console.log(z)
 </script>
 
-<script xtype='x' id="ch0104/19">
-
+<script type='x' id="ch0104/19">
+  var x = +prompt('x')
+    , y = +prompt('y')
+    , z = prompt('operator')
+  switch (z) {
+    case '+':
+      console.log(x + y);
+      break;
+    case '-':
+      console.log(x - y);
+      break;
+    case '*':
+      console.log(x * y);
+      break;
+    case '/':
+      console.log(x / y);
+      break;
+    default:
+      console.log('Invalid operator!')
+  }
 </script>
 
-<script xtype='x' id="ch0104/20">
-
+<script type='x' id="ch0104/20">
+  var a = +prompt('a')
+    , b = +prompt('b')
+    , c = +prompt('c')
+    , delta = b * b - 4 * a * c
+    , x1 = (-b + Math.sqrt(delta)) / 2 / a
+    , x2 = (-b - Math.sqrt(delta)) / 2 / a
+    , y = -b / 2 / a
+    , z = Math.sqrt(Math.sqrt(delta * delta)) / 2 / a
+  if (delta == 0) {
+    console.log('x1=x2=' + x1)
+  } else if (delta > 0) {
+    if (x1 > x2) {
+      console.log('x1=' + x1 + ';x2=' + x2)
+    } else {
+      console.log('x1=' + x2 + ';x2=' + x1)
+    }
+  } else {
+    console.log('x1=' + String(y.toFixed(5)) + '+' + z.toFixed(5) + 'i' + ';x2=' + String(y.toFixed(5)) + '-' + z.toFixed(5) + 'i')
+  }
 </script>
 
-<script xtype='x' id="ch0104/21">
-
+<script type='x' id="ch0104/21">
+  console.log(+prompt('n') - Math.ceil(1 / +prompt('x') * +prompt('y')))
 </script>
 
-<script xtype='x' id="ch0104/22">
-
-</script>
-
-<script xtype='x' id="ch0104/23">
-
-</script>
-
-<script xtype='x' id="ch0104/24">
-
-</script>
-
-<script xtype='x' id="ch0104/25">
-
-</script>
-
-<script xtype='x' id="ch0104/26">
-
-</script>
-
-<script xtype='x' id="ch0104/27">
-
-</script>
-
-<script xtype='x' id="ch0104/28">
-
-</script>
-
-<script xtype='x' id="ch0104/29">
-
-</script>
-
-<script xtype='x' id="ch0104/30">
-
-</script>
-
-<script xtype='x' id="ch0104/31">
-
-</script>
