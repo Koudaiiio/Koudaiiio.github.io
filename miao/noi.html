@@ -749,9 +749,7 @@
   while (Math.floor(i / 49) != i % 81 % 9 || Math.floor(i % 49 / 7) != Math.floor(i % 81 / 9) || i % 49 % 7 != Math.floor(i / 81)) {
     i++
   }
-  console.log(i)
-  console.log(String(Math.floor(i / 49)) + Math.floor(i % 49 / 7) + i % 49 % 7)
-  console.log(String(Math.floor(i / 81)) + Math.floor(i % 81 / 9) + i % 81 % 9)
+  console.log(i ,String(Math.floor(i / 49)) + Math.floor(i % 49 / 7) + i % 49 % 7 ,String(Math.floor(i / 81)) + Math.floor(i % 81 / 9) + i % 81 % 9)
 </script>
 
 <script type="x" id="ch0105/26">
@@ -793,8 +791,19 @@
   console.log(str)
 </script>
 
-<script xtype="x" id="ch0105/29">
-
+<script type="x" id="ch0105/29">
+  var n = +prompt('n')
+    , t = 0
+    , c = 0
+    , a = 0
+  for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
+    c++
+  }
+  for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
+    a++
+    t += (n % (10 * i) / i | 0) * Math.pow(10, (c - a))
+  }
+  console.log(t)
 </script>
 
 <script type="x" id="ch0105/30">
@@ -906,34 +915,339 @@
   console.log(N)
 </script>
 
-<script xtype="x" id="ch0105/38">
+<script type="x" id="ch0105/38">
+  var n = +prompt('n')
+    , t = 0
+    , a = 0
+  for (var i1 = 1; i1 <= n; i1++) {
+    var m = +prompt('m')
+    var str = ''
+    for (var i2 = 0; i2 <= m; i2++) {
+      t = +prompt('t') * (m - i2)
+      a += t
+      if (i2 != m) {
+        str += String(t) + ' '
+      }
+    }
+    if (a == 0) {
+      console.log(0)
+    } else {
+      console.log(str)
+    }
+  }
+</script>
+
+<script type="x" id="ch0105/39">
+  var n = +prompt('n')
+    , t = 0
+    , x = 0
+  for (var i = 1; i <= n; i++) {
+    x += i * i
+    if (i % 7 == 0) {
+      t += i * i
+    } else {
+      for (a = 1; i / a >= 1; a *= 10) {
+        if ((i % (10 * a) / a | 0) == 7) {
+          t += i * i
+        }
+      }
+    }
+  }
+  console.log(x - t)
+</script>
+
+<script type="x" id="ch0105/40">
+  var n = +prompt('n')
+    , c = 0
+  for (var i = 1; i <= n; i++) {
+    for (a = 1; i / a >= 1; a *= 10) {
+      if ((i % (10 * a) / a | 0) == 1) {
+        c++
+      }
+    }
+  }
+  console.log(c)
+</script>
+
+<script type="x" id="ch0105/41">
+  var m = +prompt('m')
+    , n = +prompt('n')
+    , c = 0
+  for (m; m <= n; m++) {
+    for (a = 1; m / a >= 1; a *= 10) {
+      if ((m % (10 * a) / a | 0) == 2) {
+        c++
+      }
+    }
+  }
+  console.log(c)
+</script>
+
+<script type="x" id="ch0105/42">
+  var w = +prompt('width')
+    , h = +prompt('height')
+    , s = prompt('symbol')
+    , e = prompt('1 or 0')
+  for (var i = 1; i <= h; i++) {
+    var str = ''
+    if ((i == 1) || (i == h) || e == 1) {
+      for (a = 1; a <= w; a++) {
+        str += s
+      }
+    } else {
+      for (a = 1; a <= w; a++) {
+        if (a == 1 || a == w){
+          str += s
+        } else {
+          str += ' '
+        }
+      }
+    }
+    console.log(str)
+  }
+</script>
+
+<script type="x" id="ch0105/43">
+  var n = +prompt('n')
+    , a = 0
+    , b = 0
+  for (var i = 2;; i++) {
+    if (n % i == 0) {
+      a = i
+      b = n / i
+      break
+    }
+  }
+  console.log(b)
+</script>
+
+<script type="x" id="ch0105/44">
+  var n = +prompt('n')
+    , c = 0
+  for (var i = 2;; i++) {
+    for (var a = 2; a < i; a++) {
+      if (i % a == 0) {
+        break
+      }
+    }
+    if(a == i) {
+      c++
+      var x = i
+    }
+    if (c == n) {
+      console.log(x)
+      break
+    }
+  }
 
 </script>
 
-<script xtype="x" id="ch0105/39">
-
+<script type="x" id="ch0105/45">
+  var n = +prompt()
+    , d = 0
+    , g = 0
+  for (var i = 1;; i++) {
+    d += i
+    g += i * i
+    if (n < d) {
+      break
+    }
+  }
+  console.log(g - (d - n) * i)
 </script>
 
-<script xtype="x" id="ch0105/40">
-
+<script type="x" id="7">
+  var n = +prompt('n')
+    , t = 0
+  for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
+    if ((n % (10 * i) / i | 0) == 7) {
+      t = 1
+      break
+    }
+  }
+  if (n % 7 == 0 || t == 1) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
 </script>
 
-<script xtype="x" id="ch0105/41">
-
+<script type="x" id="sort">
+  var a = +prompt()
+    , b = +prompt()
+    , c = +prompt()
+  if (a >= b && b >= c) {
+    console.log(c, b, a)
+  } else if (a >= c && c >= b) {
+    console.log(b, c, a)
+  } else if (b >= a && a >= c) {
+    console.log(c, a, b)
+  } else if (b >= c && c >= a) {
+    console.log(a, c, b)
+  } else if (c >= a && a >= b) {
+    console.log(b, a, c)
+  } else if (c >= b && b >= a) {
+    console.log(a, b, c)
+  }
 </script>
 
-<script xtype="x" id="ch0105/42">
-
+<script type="x" id="narcissistic">
+  var n = +prompt('n')
+    , t = 0
+    , c = 0
+  for (var i = 1; n / i >= 1; i *= 10) {
+    c++
+  }
+  for (var i = 1; n / i >= 1; i *= 10) {
+    t += Math.pow((n % (10 * i) / i | 0), c)
+  }
+  if (n == t) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
 </script>
 
-<script xtype="x" id="ch0105/43">
-
+<script type="x" id="narcissistics">
+  for (var n = 1; n <= 1000; n++) {
+    var c = 0
+    for (var i = 1; n / i >= 1; i *= 10) {
+      c++
+    }
+    var t = 0
+    for (var i = 1; n / i >= 1; i *= 10) {
+      t += Math.pow((n % (10 * i) / i | 0), c)
+    }
+    if (n == t) {
+      console.log(n)
+    }
+  }
 </script>
 
-<script xtype="x" id="ch0105/44">
-
+<script type="x" id="palindrom">
+  var n = +prompt('n')
+    , c = 0
+    , t = 0
+    , a = 0
+  for (var i = 1;;i *= 10) {
+    if (n / i < 1) {
+      break
+    }
+    c++
+  }
+  for (var i = 1; n / i >= 1; i *= 10) {
+    a++
+    t += (n % (10 * i) / i | 0) * Math.pow(10, c - a)
+  }
+  if (t == n) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
 </script>
 
-<script xtype="x" id="ch0105/45">
+<script type="x" id="weekday">
+  var y = +prompt('years')
+    , m = +prompt('month')
+    console.log(new Date(y + "/" + m + "/01").getDay())
+</script>
 
+<script type="x" id="complete-number">
+  var n = +prompt('n')
+    , t = 0
+  for (var i = 1; i <= n; i++) {
+    if (n % i == 0 && i != n) {
+      t += i
+    }
+  }
+  if (t == n) {
+    console.log('YES')
+  } else (
+    console.log('NO')
+  )
+</script>
+
+<script type="x" id="complete-numbers">
+  for (var i = 1; i <= 1000; i++) {
+    var t = 0
+    for (var a = 1; a <= i; a++) {
+      if (i % a == 0 && a != i) {
+        t += a
+      }
+    }
+    if (t == i) {
+      console.log(i)
+    }
+  }
+</script>
+
+<script type="x" id="prime">
+  var n = +prompt('n')
+  for (var i = 2; i <= n; i++) {
+    if (n % i == 0) {
+      break
+    }
+  }
+  if(i == n) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
+  </script>
+
+<script type="x" id="primes">
+  for (var i = 2; i <= 100; i++) {
+    for (var a = 2; a < i; a++) {
+      if (i % a == 0) {
+        break
+      }
+    }
+    if(a == i) {
+      console.log(i)
+    }
+  }
+</script>
+
+<script type="x" id="itob">
+  var x = +prompt('input a number')
+  console.log(String(x))
+</script>
+
+<script xtype="x" id="lcf&lcm">
+  var x = +prompt('x')
+    , y = +prompt('y')
+    , a = 0
+    , b = 0
+  if (x >= y) {
+    for (var i = y;; i--) {
+      if (x % i == 0 && y % i == 0) {
+        console.log(i)
+        break
+      }
+    }
+    for (var i = x;; i++) {
+      if (i % x == 0 && i % y == 0) {
+        console.log(i)
+        break
+      }
+    }
+  } else {
+    for (var i = x;; i--) {
+      if (x % i == 0 && y % i == 0) {
+        console.log(i)
+        break
+      }
+    }
+    for (var i = y;; i++) {
+      if (i % x == 0 && i % y == 0) {
+        console.log(i)
+        break
+      }
+    }
+  }
+</script>
+
+<script type="x" id="sqrt">
+  var x = Math.sqrt(+prompt())
+  console.log(x.toFixed(3))
 </script>
