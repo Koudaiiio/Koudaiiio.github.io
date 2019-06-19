@@ -1288,3 +1288,70 @@
   var x = Math.sqrt(+prompt())
   console.log(x.toFixed(3))
 </script>
+
+<script type="x" id="loop">
+  var n = +prompt('n')
+  for (var i = 1; i <= n; i++) {
+    var str = ''
+    for (var a = 1; a <= i; a++) {
+      str += '#'
+    }
+    console.log(str)
+  }
+</script>
+
+<script type="x" id="FizzBuzz">
+  for (var i = 1; i <= 100; i++) {
+    if (i % 15 == 0) {
+      console.log('FizzBuzz')
+    } else if (i % 3 != 0 && i % 5 == 0) {
+      console.log('Buzz')
+    } else if (i % 3 == 0 && i % 5 != 0) {
+      console.log('Fizz')
+    } else {
+      console.log(i)
+    }
+  }
+</script>
+
+<script type="x" id="chess">
+  var n = +prompt('n')
+  for (var i = 1; i <= n; i++) {
+    var str = ''
+    if (i % 2 == 0) {
+      for (var a = 1; a <= n; a++) {
+        if (a % 2 == 0) {
+          str += ' '
+        } else {
+          str += '#'
+        }
+      }
+    } else {
+      for(var a = 1; a <= n; a++) {
+        if (a % 2 == 0) {
+          str += '#'
+        } else {
+          str += ' '
+        }
+      }
+    }
+    console.log(str)
+  }
+</script>
+
+<script type="x" id="">
+  
+</script>
+
+<script type="x" id="">
+  
+</script>
+
+<script type="x" id="">
+  
+</script>
+
+<script type="x" id="">
+  
+</script
+>
