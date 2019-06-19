@@ -1210,6 +1210,8 @@
     for (var a = 1; a <= i; a++) {
       if (i % a == 0 && a != i) {
         t += a
+      } else {
+        continue
       }
     }
     if (t == i) {
