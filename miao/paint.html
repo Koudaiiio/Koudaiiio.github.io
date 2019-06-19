@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="400" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated'
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * YOUR TASK
+画图的题：
+画一条实线
+画一条一个实点一个空点的虚线
+画一条两个实点两个空点的虚线
+画一条三个实点两个空点的虚线
+画一条45度的斜线
+画一条跨越画布左上角和右下角的对角线
+画一个空心矩形
+画一个实心矩形
+画一个rgb色彩空间的某一面
+画一个空心的圆
+画一个实心的圆
+画一个大小合适的sin(x)的图像
+   */
+</script>
+<script>
+  // YOUR CODE GOES BELOW
+  for (var i = 100; i <= 350; i++) {
+    dot(i, 50, )
+    if (i % 2 == 0) {
+      dot(i, 60, )
+    }
+  }
+  for (var i = 100, c = 1; i <= 350; i += 2, c++) {
+    if (c % 2 != 0) {
+      dot(i, 70, )
+      dot(i+1, 70, )
+    }
+  }
+  for (var i = 100; i <= 350; i += 5) {
+    var c = i
+    for (var a = 1; a <= 5; a++, c++) {
+      if (a <= 3) {
+        dot(c, 80, )
+      }
+    }
+  }
+  var d = 4 / 3
+  for (var i = 0; i <= 300; i++) {
+    dot(i, i, )
+    dot(i * d, i, )
+  }
+  for (var i = 1; i <= 30; i++) {
+    for (var a = 1; a <= 50; a++) {
+      if (i != 1 && i != 30 && a != 1 && a != 50) {
+      } else {
+        dot (250 + a, 100 + i, )
+      }
+      dot (250 + a, 140 + i, )
+    }
+  }
+  var d = 255 / 100
+  for (var i = 1; i <= 100; i++) {
+    for (var a = 1; a <= 100; a++) {
+      var c1 = i * d
+        , c2 = a * d
+        , rgb = 'rgb(' + c1 + ',' + c2 + ',' + 255 + ')'
+      dot (30 + a, 180 + i, rgb)
+    }
+  }
+
+  for (var i = 0; i <= 3.14159 * 2; i += 0.01) {
+    dot (100 + 50 * Math.sin(i), 100 + 50 * Math.cos(i), )
+    for (var a = 0; a <= 50; a++) {
+      dot (190 + a * Math.sin(i), 210 + a * Math.cos(i), 'lime')
+    }
+  }
+
+  for (var i = 1; i <= 70; i += 0.1) {
+    dot(50 + i * 5, 50 + 10 * Math.sin(i), )
+  }
+
+  
+
+
+
+</script>
+</html>
