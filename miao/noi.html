@@ -758,7 +758,7 @@
     , c = 0
   for (var i = 1; i <= n; i++) {
     x = +prompt()
-    if (x % 1000 % 100 % 10 - Math.floor(x / 1000) - Math.floor(x % 1000 / 100) - Math.floor(x % 1000 % 100 / 10) > 0) {
+    if (x % 10 - Math.floor(x / 1000) - Math.floor(x % 1000 / 100) - Math.floor(x % 100 / 10) > 0) {
       c++
     }
   }
@@ -789,21 +789,33 @@
     str = str + ' ' + (n % (10 * i) / i | 0)
   }
   console.log(str)
+
+  var n = +prompt('n')
 </script>
 
 <script type="x" id="ch0105/29">
-  var n = +prompt('n')
-    , t = 0
-    , c = 0
-    , a = 0
-  for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
-    c++
+  // var n = +prompt('n')
+  //   , t = 0
+  //   , c = 0
+  //   , a = 0
+  // for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
+  //   c++
+  // }
+  // for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
+  //   a++
+  //   t += (n % (10 * i) / i | 0) * Math.pow(10, (c - a))
+  // }
+  // console.log(t)
+
+  var n = +prompt()
+  var sum = 0
+
+  while (n != 0) {
+    var digit = n % 10
+    sum = sum * 10 + digit
+    n = (n - digit) / 10
   }
-  for (var i = 1; Math.abs(n / i) >= 1; i *= 10) {
-    a++
-    t += (n % (10 * i) / i | 0) * Math.pow(10, (c - a))
-  }
-  console.log(t)
+  console.log(sum)
 </script>
 
 <script type="x" id="ch0105/30">
@@ -827,20 +839,28 @@
 <script type="x" id="ch0105/31">
   var N = +prompt('N')
     , M = +prompt('M')
-  
+  for (var i = 1; i <= N; i++) {
+    var light = false
+    for (var p = 1; p <= M; p++) {
+      if (i % p == 0) {
+        light = !light
+      }
+    }
+    if (light) {
+      console.log(i)
+  }
+}
 </script>
 
 <script type="x" id="ch0105/32">
   var n = +prompt('n')
-    , a = 2
+    , a = 1
     , b = 1
     , t = 0
-    , x = 0
   for (var i = 1; i <= n; i++) {
-    t += a / b
-    x = b
-    b = a
-    a += x
+    b = b + a
+    a = b - a
+    t += b / a
   }
   console.log(t.toFixed(4))
 </script>
@@ -894,11 +914,10 @@
   var M = +prompt('M')
     , N = +prompt('N')
     , X = +prompt('X')
-    , a = 0
     , t = 0
     , n = 0
-  while (X * N + t >= M) {
-    a = t
+  while (X * N >= M) {
+    var a = 0
     if (a + N < M) {
       a += N
       X--
@@ -938,22 +957,40 @@
 </script>
 
 <script type="x" id="ch0105/39">
-  var n = +prompt('n')
-    , t = 0
-    , x = 0
-  for (var i = 1; i <= n; i++) {
-    x += i * i
-    if (i % 7 == 0) {
-      t += i * i
-    } else {
-      for (a = 1; i / a >= 1; a *= 10) {
-        if ((i % (10 * a) / a | 0) == 7) {
-          t += i * i
+  // var n = +prompt('n')
+  //   , t = 0
+  //   , x = 0
+  // for (var i = 1; i <= n; i++) {
+  //   x += i * i
+  //   if (i % 7 == 0) {
+  //     t += i * i
+  //   } else {
+  //     for (a = 1; i / a >= 1; a *= 10) {
+  //       if ((i % (10 * a) / a | 0) == 7) {
+  //         t += i * i
+  //       }
+  //     }
+  //   }
+  // }
+  // console.log(x - t)
+
+  var result = 0
+  for(var i = 1; i <= 21; i++) {
+    if (i % 7 != 0) {
+      var n = i
+      while(n > 0) {
+        var digit = n % 10
+        if (digit == 7) {
+          break
         }
+        n = (n - digit) / 10
+      }
+      if (n == 0) {
+        result += i * i
       }
     }
   }
-  console.log(x - t)
+  console.log(result)
 </script>
 
 <script type="x" id="ch0105/40">
