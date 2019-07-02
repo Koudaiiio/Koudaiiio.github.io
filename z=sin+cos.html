@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  @keyframes spin {
+    from {
+      transform: rotatey(0deg) rotatex(0deg);
+    }
+    to {
+      transform: rotatey(3600deg) rotatex(360deg);
+    }
+  }
+  div {
+    width: 300px;
+    height: 300px;
+    background-color: rgb(1,1,1,0.1);
+    position: relative;
+    animation: spin 60s infinite linear;
+    margin-top: 300px;
+    margin-left: 300px;
+    transform-style: preserve-3d;
+  }
+  div:hover {
+    animation-play-state: paused;
+  }
+  span {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+</style>
+<body>
+  <div>
+    <script>
+      let scale = 255 / 200
+      for (let x = -100; x <= 100; x+=8) {
+        for (let y = -100; y <= 100; y+=8) {
+          var r1 = Math.atan(Math.cos(x / 20))
+          var r2 = Math.atan(-Math.sin(y / 20))
+          var z = (Math.sin(x / 20) + Math.cos(y / 20)) * 20
+          document.write("<span style = 'transform: translate3d(" + x + "px," + y + "px," + z + "px) rotateX(" + r2 + "rad) rotateY(" + -r1 + "rad);background-color: rgb(" + (x+100) * scale + "," + (y+100) * scale + ", 255)'></span>")
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>

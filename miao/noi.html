@@ -1285,8 +1285,20 @@
 </script>
 
 <script type="x" id="sqrt">
-  var x = Math.sqrt(+prompt())
-  console.log(x.toFixed(3))
+  var n = +prompt('n')
+  , a = n / 2
+  , N = 0
+  , M = n
+  while (Math.abs(a * a - n) > Math.pow(10, -15)) {
+    if (a * a > n) {
+      M = a
+      a = (a + N) / 2
+    } else if (a * a < n) {
+      N = a
+      a = (M + a) / 2
+    }
+  }
+  console.log(a)
 </script>
 
 <script type="x" id="loop">
@@ -1340,7 +1352,14 @@
 </script>
 
 <script type="x" id="">
-  
+  var isPrime = function (n) {
+    for (var i = 1; i <= Math.sqrt(n); i++) {
+      if (i != 1 && i != n && n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
 </script>
 
 <script type="x" id="">

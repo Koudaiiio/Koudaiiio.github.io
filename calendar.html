@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function getMonthDays(y, m) {
+      switch (m) {
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          return 30
+        case 2:
+          if (isLeapYear(y)) {
+            return 29
+          } else {
+            return 28
+          }
+        default:
+          return 31
+      }
+    }
+    function isLeapYear(y) {
+      if (y % 400 == 0) {
+        return true
+      }
+      if (y % 100 == 0) {
+        return false
+      }
+      if (y % 4 == 0) {
+        return true
+      }
+    }
+    function weekday(year, month) {
+      var y = year - 1
+      var days = y * 365 + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)
+      for(var m = 1; m < month; m++) {
+        days += getMonthDays(year, m)
+      }
+      return (days + 1) % 7
+    }
+    function days(y, m) {
+      let write = '<table>'
+      write += '<thead><tr>'
+      write += '<td>Suu</td>'
+      write += '<td>Mon</td>'
+      write += '<td>Tue</td>'
+      write += '<td>Wed</td>'
+      write += '<td>Thr</td>'
+      write += '<td>Fri</td>'
+      write += '<td>Sat</td>'
+      write += '</tr></thead>'
+    }
+  </script>
+  <style>
+    td {
+      text-align: center;
+      margin: 5px;
+      padding: 10px;
+      width: 100px;
+      font-size: 20px;
+    }
+    tr + tr td {
+      border: 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <h1>January</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 1)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>February</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 2)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 28) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>March</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 3)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>April</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 4)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 30) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>May</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 5)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>June</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 6)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 30) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>July</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 7)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>August</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 8)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>September</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 9)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 30) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>October</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 10)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>November</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 11)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 30) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+  <h1>December</h1>
+  <table>
+    <tr>
+      <td>Sunday</td>
+      <td>Monday</td>
+      <td>Tuesday</td>
+      <td>Wednesday</td>
+      <td>Thursday</td>
+      <td>Friday</td>
+      <td>Saturday</td>
+    </tr>
+    <tr>
+      <script>
+        var d = weekday(2019, 12)
+          , c = 1
+        for(let i = 0; i < d; i++) {
+          document.write('<td></td>')
+        }
+        for (let i = d; i <=6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (let i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+        }
+      </script>
+    </tr>
+    <tr>
+      <script>
+        for (var i = 0; i <= 6; i++, c++) {
+          document.write('<td>')
+          document.write(c)
+          document.write('</td>')
+          if (c === 31) {
+            break
+          }
+        }
+        for (i; i < 6; i++) {
+          document.write('<td></td>')
+        }
+      </script>
+    </tr>
+  </table>
+</body>
+</html>
