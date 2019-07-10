@@ -5,5 +5,5 @@ var koudaiiio = {
       if (ary[i]) result.push(ary[i])
     }
     return result
-  }
+  },
 }
