@@ -99,7 +99,8 @@ var koudaiiio = function () {
         if (ary.indexOf(i[last]) === -1) result.push(i)
       }
     } else {
-      return difference(array, rest.push(last))
+      rest.push(last)
+      return difference(array, rest)
     }
     return result
   }
