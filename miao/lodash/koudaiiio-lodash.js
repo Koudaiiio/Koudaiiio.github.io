@@ -69,14 +69,9 @@ var koudaiiio = function () {
    */
   function difference(array, ...values) {
     var result = []
-    for (var i = 0; i < array.length; i++) {
-      var isdiff = true
-      for (var j of values) {
-        j.forEach(it => {
-          if (it === array[i]) isdiff = false
-        })
-      }
-      if (isdiff) result.push(array[i])
+    var c = flattenDeep(values)
+    for (var i of array) {
+      if (c.indexOf(i) === -1) result.push(i)
     }
     return result
   }
