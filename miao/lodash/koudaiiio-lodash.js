@@ -49,7 +49,9 @@ var koudaiiio = function () {
   function concat(array, ...vals) {
     for (var i in vals) {
       if (Array.isArray(vals[i])) {
-        array.push(vals[i][0])
+        for (var j of vals[i]) {
+          array.push(j)
+        }
       } else {
         array.push(vals[i])
       }
@@ -79,11 +81,100 @@ var koudaiiio = function () {
     return result
   }
 
+  /**
+   * [differenceBy description]
+   *
+   * @param   {Array}  array    [array description]
+   * @param   {Array|Number|String}  ...rest  [...rest description]
+   *
+   * @return  {Array}           [return description]
+   */
+  function differenceBy(array, ...rest) {
+    var last = rest.pop()
+      , result = []
+      , ary = []
+    if (typeof last === 'function') {
+      ary = flatten(rest).map(it => last(it))
+      for (var i of array) {
+        if (ary.indexOf(last(i)) === -1) result.push(i)
+      }
+    } else if (typeof last === 'string') {
+      ary = flatten(rest).map(it => it[last])
+      for (var i of array) {
+        if (ary.indexOf(i[last]) === -1) result.push(i)
+      }
+    } else {
+      return difference(array, rest.push(last))
+    }
+    return result
+  }
+
+  /**
+   * [flatten description]
+   *
+   * @param   {Array}  array  [array description]
+   *
+   * @return  {Array}         [return description]
+   */
+  function flatten(array) {
+    var result = []
+    for (var i of array) {
+      if (Array.isArray(i)) {
+        for (var j of i) result.push(j)
+      } else {
+        result.push(i)
+      }
+    }
+    return result
+  }
+
+  /**
+   * [flattenDeep description]
+   *
+   * @param   {Array}  array  [array description]
+   *
+   * @return  {Array}         [return description]
+   */
+  function flattenDeep(array) {
+    var result = array
+    while(1) {
+      var isflatterned = true
+      for (var i of result) {
+        if (Array.isArray(i)) {
+          result = flatten(result)
+          isflatterned = false
+        }
+      }
+      if (isflatterned) break
+    }
+    return result
+  }
+
+  /**
+   * [flattenDepth description]
+   *
+   * @param   {Array}  array  [array description]
+   * @param   {Number}  depth  [depth description]
+   *
+   * @return  {Array}         [return description]
+   */
+  function flattenDepth(array, depth = 1) {
+    var result = array
+    for (var i = 0; i < depth; i++) {
+      result = flatten(result)
+    }
+    return result
+  }
+
 
   return {
     chunk,
     compact,
     concat,
     difference,
+    differenceBy,
+    flatten,
+    flattenDeep,
+    flattenDepth,
   }
 } ()
