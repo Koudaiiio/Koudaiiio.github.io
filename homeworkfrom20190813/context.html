@@ -1,0 +1,143 @@
+<!-- <p>A paragraph with a <button>button</button></p>
+<script>
+  var para = document.querySelector("p")
+  var button = document.querySelector("button")
+  para.addEventListener("mousedown", function() {
+    console.log("Handler for paragraph.")
+  })
+  button.addEventListener("mousedown", function(event) {
+    console.log("Handler for button.")
+    if (event.which == 3) {
+      event.stopPropagation()
+    }
+  })
+</script> -->
+
+<!-- <button>Click me</button>
+<script>
+  var button = document.querySelector("button")
+  button.addEventListener("mousedown", function(event) {
+    if (event.which == 1) {
+      console.log("Left button")
+    } else if (event.which == 2) {
+      console.log("Middle button")
+    } else if (event.which == 3) {
+      console.log("Right button")
+    }
+  })
+</script> -->
+
+<!-- <button>A</button>
+<button>B</button>
+<button>C</button>
+<script>
+  document.body.addEventListener("click", function(event) {
+    if (event.target.nodeName == "BUTTON") {
+      console.log("Clicked", event.target.textContent)
+    }
+  })
+</script> -->
+
+
+<style>
+  body {
+    position: relative;
+  }
+  div#menu {
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    text-align: center;
+    line-height: 50px;
+    opacity: 0;
+    transition:opacity 0.2s;
+    position: absolute;
+    border-radius: 5px;
+  }
+
+  p {
+    font-size: 30px;
+    color: red;
+  }
+
+  .a {
+    color: green
+  }
+</style>
+<body>
+  <img src="https://drscdn.500px.org/photo/1001202568/q%3D80_m%3D1000/v2?sig=b27130a3d675bf733d844a3e0e07c0bd3e70452f669ce0c79206a3a497b9f795" alt="">
+  <input type="text">
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  <p class='a'>Sucks Sucks Sucks Sucks Sucks</p>
+  <p class='b'>Jesus Jesus Jesus Jesus Jesus</p>
+  
+  <div id='menu'>This is contextMenu</div>
+  
+</body>
+<script>
+  var input = document.querySelector('input')
+  input.addEventListener('keydown', console.log)
+  // window.addEventListener('beforeunload', function(e) {
+  //   e.returnValue = '111'
+  // })
+var toY = 0
+  addEventListener('keydown', function(event) {
+    if (event.key == 'j') {
+      toY = window.scrollY
+      toY += 50
+      window.scroll({
+        top: toY,
+        behavior: 'smooth'
+      })
+    }
+  })
+
+  addEventListener('keydown', function(event) {
+    if (event.key == 'k') {
+      toY = window.scrollY
+      toY -= 50
+      window.scroll({
+        top: toY,
+        behavior: 'smooth'
+      })
+    }
+  })
+
+  var img = document.querySelector('img')
+  img.addEventListener('contextmenu', function(e) {
+    var div = document.querySelector('div')
+    div.style.opacity = 0
+    div.style.opacity = 1
+    var x = e.clientX
+      , y = e.clientY + window.scrollY
+    div.style.left = x
+    div.style.top = y
+    e.preventDefault()
+  })
+
+  window.addEventListener('mousedown', function(e) {
+    if (e.which == 1) {
+      var div = document.querySelector('div')
+      div.style.opacity = 0
+    }
+  })
+</script>

@@ -1,0 +1,65 @@
+<style>
+  div.cc {
+    height: 100px;
+    width: 200px;
+    border: 1px solid;
+    margin: auto;
+  }
+
+  div.outer {
+    width: 100%;
+    text-align: center;
+    margin-top: 300px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    xbackground-color: red;
+    position: absolute;
+    border-radius: 100%;
+  }
+</style>
+
+<input type="color" id='color'>
+
+<div class='outer'>
+  <div class='cc'></div>
+</div>
+
+<script>
+  var div = document.querySelector('div.cc')
+
+  div.addEventListener('mousedown', e => {
+    console.log(e.layerX)
+    div.style.backgroundColor = 'red'
+  })
+
+  div.addEventListener('mouseup', e => {
+    div.style.backgroundColor = ''
+  })
+
+  div.addEventListener('dblclick', e => {
+    div.style.backgroundColor = 'green'
+  })
+
+  window.addEventListener('mousedown', e => {
+    window.addEventListener('mousemove', move)
+  })
+
+  function move(e) {
+    if (e.target == document.getElementById('color'))
+      return
+    var div = document.createElement('div')
+    div.style.left = e.pageX - 3 + 'px'
+    div.style.top = e.pageY - 3 + 'px'
+    div.className = 'dot'
+    div.style.backgroundColor = document.getElementById('color').value
+    document.body.appendChild(div)
+    window.addEventListener('mouseup', e => {
+      window.removeEventListener('mousemove', move)
+    })
+  }
+
+
+</script>

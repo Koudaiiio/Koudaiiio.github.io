@@ -1,0 +1,73 @@
+<style>
+  div {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+  }
+
+  .d1 {
+    background-color: red;
+  }
+
+  .d2 {
+    background-color: green;
+    top: 150px;
+  }
+
+  .d3 {
+    background-color: blue;
+    top: 300px;
+  }
+
+  .d4 {
+    background-color: yellow;
+    top: 450px;
+  }
+
+  .d5 {
+    background-color: gray;
+    top: 600px;
+  }
+</style>
+
+<body>
+  <div class='d1'></div>
+  <div class='d2'></div>
+  <div class='d3'></div>
+  <div class='d4'></div>
+  <div class='d5'></div>
+</body>
+
+<script>
+  var div = document.querySelectorAll('div')
+  var index = 0
+  var initX, initY
+
+  document.body.addEventListener('mousedown', function(e) {
+    console.log(event.target.nodeName)
+    if (event.target.nodeName == 'DIV') {
+      console.log('get')
+      if (e.which == 1) {
+        index++
+        document.body.addEventListener('mousemove', move)
+      }
+    }
+  })
+
+  div.forEach(it => {it.addEventListener('mousedown', e => {
+    initX = e.offsetX
+    initY = e.offsetY
+  })})
+
+  function move(e) {
+    if (e.target.nodeName == 'DIV') {
+      e.target.style.zIndex = index
+      e.target.style.left = e.pageX - initX + 'px'
+      e.target.style.top = e.pageY - initY + 'px'
+      document.body.addEventListener('mouseup', e => {
+        document.body.removeEventListener('mousemove', move)
+      })
+    }
+  }
+</script>
+
