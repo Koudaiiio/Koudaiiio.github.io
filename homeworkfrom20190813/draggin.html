@@ -1,4 +1,5 @@
 <style>
+
   div {
     position: absolute;
     height: 100px;
@@ -42,15 +43,16 @@
   var div = document.querySelectorAll('div')
   var index = 0
   var initX, initY
+  var t
 
   document.body.addEventListener('mousedown', function(e) {
     console.log(event.target.nodeName)
-    if (event.target.nodeName == 'DIV') {
+    if (event.target.matches('div')) {
       console.log('get')
-      if (e.which == 1) {
-        index++
-        document.body.addEventListener('mousemove', move)
-      }
+      index++
+      e.target.style.zIndex = index
+      t = e.target
+      document.body.addEventListener('mousemove', move)
     }
   })
 
@@ -60,14 +62,13 @@
   })})
 
   function move(e) {
-    if (e.target.nodeName == 'DIV') {
-      e.target.style.zIndex = index
-      e.target.style.left = e.pageX - initX + 'px'
-      e.target.style.top = e.pageY - initY + 'px'
-      document.body.addEventListener('mouseup', e => {
-        document.body.removeEventListener('mousemove', move)
-      })
-    }
+    var left = e.pageX - initX
+    var top = e.pageY - initY
+    left = left < 0 ? 0 : left
+    top = top < 0 ? 0 : top
+    t.style.left = left + 'px'
+    t.style.top = top + 'px'
+    if (e.buttons == 0) document.body.removeEventListener('mousemove', move)
   }
 </script>
 

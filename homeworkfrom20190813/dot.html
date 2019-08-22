@@ -56,9 +56,13 @@
     div.className = 'dot'
     div.style.backgroundColor = document.getElementById('color').value
     document.body.appendChild(div)
-    window.addEventListener('mouseup', e => {
+    if (e.buttons == 0) {
       window.removeEventListener('mousemove', move)
-    })
+      return
+    }
+    // window.addEventListener('mouseup', e => {
+    //   window.removeEventListener('mousemove', move)
+    // })
   }
 
 
