@@ -1,0 +1,13 @@
+
+<div>
+  未读消息: <span></span>
+  Test:<div></div>
+</div>
+
+<script>
+  document.querySelector('span').textContent = localStorage.unread || '0'
+  window.onstorage = function() {
+    document.querySelector('span').textContent = localStorage.unread || '0'
+    document.querySelector('div div').textContent = sessionStorage.unread || '0'
+  }
+</script>

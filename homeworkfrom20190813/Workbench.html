@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+    div.outer {
+      xtext-align: center;
+    }
+
+    div.input {
+      display: inline-block;
+      position: relative;
+    }
+
+    div.output {
+      display: inline-block;
+      position: relative;
+      font-size: 20px;
+      color: blue;
+    }
+
+    textarea {
+      font-size: 20px;
+    }
+
+    div.content {
+      border: 1px solid;
+      width: 520px;
+      height: 150px;
+      overflow: auto;
+    }
+
+    button {
+      display: block;
+      position: absolute;
+      right: 0;
+    }
+
+    ::placeholder {
+      color:rgba(0,0,0,.3);
+      font-style: italic;
+    }
+  </style>
+
+  <title>Document</title>
+</head>
+<body>
+  <div class="outer">
+    <div class="input">
+      <textarea placeholder="Code Here" cols="50" rows="10"></textarea>
+      <button class='run'>Run</button>
+    </div>
+    <br><br>Output: <br>
+    <div class="output">
+      <div class="content"></div>
+      <button class='clear'>Clear</button>
+    </div>
+  </div>
+
+  <script>
+    var output = document.querySelector('.content')
+    var run = document.querySelector('.run')
+    var clear = document.querySelector('.clear')
+    var input = document.querySelector('textarea')
+    var cache = []
+
+    function runCode() {
+      var cache = []
+      var console = {
+        log: function(...args) {
+          for (var i of args) {
+            cache.push(i)
+          }
+        }
+      }
+      var str = ''
+      try {
+        eval(document.querySelector('textarea').value)
+      } catch(e) {
+        str = String(e)
+        output.textContent = str
+        return
+      }
+      for (var i of cache) {
+        str += i
+      }
+      if (str == '') {
+        output.textContent = 'undefined'
+        return
+      }
+      output.textContent = "\"" + str.split('').join(' ') + "\""
+      cache = []
+    }
+    
+
+    input.addEventListener('keydown', e => {
+      if (e.key == 'Tab') {
+        e.preventDefault()
+        input.value += '  '
+      }
+    })
+
+    run.addEventListener('click', e => {
+      runCode()
+    })
+
+    clear.addEventListener('click', e => {
+      output.textContent = ''
+    })
+  </script>
+</body>
+</html>

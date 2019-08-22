@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background-image: url(red.png);
+      background-size: contain;
+    }
+  </style>
+</head>
+<body>
+
+
+  <script>
+    var lastTime
+    // var imgs = document.querySelectorAll('img')
+    // var X = 0, Y = 0
+    window.addEventListener('mousemove', throttle(e => {
+      var div = document.createElement('div')
+      div.style.left = e.pageX + 'px'
+      div.style.top = e.pageY + 'px'
+      document.body.appendChild(div)
+      setTimeout(() => {
+        document.body.removeChild(div)
+      }, 100)
+    }, 10))
+
+    function throttle(f, duration) {
+      var timerId 
+      var lastTime = 0
+      return function(...args) {
+        clearTimeout(timerId)
+        now = Date.now()
+        if(now - lastTime > duration){
+          f(...args)
+          lastTime = now
+        }else{
+          timerId = setTimeout(() => {
+            f(...args)
+            lastTime = Date.now()
+          }, duration)
+        }
+      }
+    }
+    // setInterval(function() {
+    //     imgs[0].style.left = X + 'px'
+    //     imgs[0].style.top = Y + 'px'
+    //   }, 50)
+    // setInterval(function() {
+    //     imgs[1].style.left = X + 'px'
+    //     imgs[1].style.top = Y + 'px'
+    //   }, 100)
+    // setInterval(function() {
+    //     imgs[2].style.left = X + 'px'
+    //     imgs[2].style.top = Y + 'px'
+    //   }, 150)
+    // setInterval(function() {
+    //     imgs[3].style.left = X + 'px'
+    //     imgs[3].style.top = Y + 'px'
+    //   }, 200)
+    // setInterval(function() {
+    //     imgs[4].style.left = X + 'px'
+    //     imgs[4].style.top = Y + 'px'
+    //   }, 250)
+    // setInterval(function() {
+    //     imgs[5].style.left = X + 'px'
+    //     imgs[5].style.top = Y + 'px'
+    //   }, 300)
+    // setInterval(function() {
+    //     imgs[6].style.left = X + 'px'
+    //     imgs[6].style.top = Y + 'px'
+    //   }, 350)
+  </script>
+</body>
+</html>

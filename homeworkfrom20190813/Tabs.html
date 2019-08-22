@@ -1,0 +1,57 @@
+<style>
+  div.button {
+    display: inline-block;
+    background-color: rgb(175, 174, 174);
+    margin-right: 5px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  span {
+    display: block;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: red;
+  }
+
+  .textbox {
+    margin-top: 20px;
+    height: 200px;
+    width: 400px;
+    border: 2px solid;
+  }
+
+
+</style>
+
+<div class='outer'>
+  <div data-tabname="This is a" tabindex="1" class='button'>Show A</div>
+  <div data-tabname="This is b" tabindex="1" class='button'>Show B</div>
+  <div data-tabname="This is c" tabindex="1" class='button'>Show C</div>
+  <div class="textbox"></div>
+</div>
+
+<script>
+  var buttons = document.querySelectorAll('.button')
+  var box = document.querySelector('.textbox')
+  var content
+
+  buttons.forEach(it => it.addEventListener('focus', e => {
+    buttons.forEach(it => it.style.backgroundColor = 'rgb(175, 174, 174)')
+    var childs = box.children
+    if (childs.length != 0) {
+      for (var i = 0; i < childs.length; i++) {
+        box.removeChild(childs[i])
+      }
+    }
+    content = document.createElement('span')
+    content.textContent = it.dataset.tabname
+    box.appendChild(content)
+    it.style.backgroundColor = 'gray'
+  }))
+
+
+
+
+</script>

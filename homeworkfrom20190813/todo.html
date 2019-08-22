@@ -1,0 +1,283 @@
+<style>
+  #head {
+    font-size: 80px;
+    color: rgba(255, 0, 0, .3)
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    position: relative;
+  }
+
+  header, section {
+    width: 550px;
+  }
+
+  footer {
+    font-size: 15px;
+    height: 20px;
+    padding: 10px 15px;
+    background-color: #eee;
+  }
+
+  .list li div {
+    font-size: 20px;
+    height: 50x;
+  }
+
+  .list li {
+    border: 1px solid;
+  }
+
+  .list li div span {
+    border-left: 1px solid;
+    padding-left: 10px;
+  }
+
+  .list li div button {
+    float: right;
+    height: 26px;
+  }
+
+  .check {
+    width: 38px;
+    margin: 0;
+  }
+
+  input#text {
+    width: 100%;
+    font-size: 20px;
+    padding: 15px 15px 15px 50px;
+  }
+
+  label {
+    position: absolute;
+    height: 100%;
+    width: 40px;
+    text-align: center;
+    line-height: 57px;
+    border: 1px solid;
+    box-sizing: border-box;
+  }
+
+  .family {
+    margin-left: 10px;
+  }
+
+  .family li {
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 3px;
+  }
+
+  .family, .family li {
+    display: inline-block;
+  }
+
+  input.check:checked ~ span {
+    text-decoration: line-through;
+    color: #AAAA;
+  }
+
+  li.active {
+    border: 1px solid;
+  }
+
+  .cal {
+    float: left;
+  }
+
+  .clear {
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .clear:hover {
+    text-decoration: underline;
+  }
+
+  
+</style>
+
+<body>
+  <div id="head">todos</div>
+  <header>
+    <label>V</label>
+    <input id='text' type="text" placeholder="What needs to be done?">
+  </header>
+  <section>
+    <ul class='list'></ul>
+    <footer style="display: none;">
+      <span id='cal'>0 items left</span>
+      <ul class="family">
+        <li class='active'>All</li>
+        <li>Active</li>
+        <li>Complete</li>
+      </ul>
+      <button class='clear' style="margin-top: 6px; display: none;">Clear completed</button>
+    </footer>
+  </section>
+
+
+  <script>
+    var input = document.querySelector('header input')
+      , list = document.querySelector('.list')
+      , num = 0
+      , footer = document.querySelector('footer')
+      , clearbutton = document.querySelector('.clear')
+      
+    input.addEventListener('keydown', e => {
+      if (e.key == 'Enter' && input.value != '') {
+        add(input.value)
+        input.value = ''
+      }
+    })
+
+    input.addEventListener('blur', e => {
+      if (input.value != '') {
+        add(input.value)
+        input.value = ''
+      }
+    })
+
+    clearbutton.addEventListener('click', e => {
+      document.querySelectorAll('.list li').forEach(it => {
+        if (it.firstChild.firstChild.checked == true) {
+          list.removeChild(it)
+        }
+      })
+      clearbutton.style.display='none'
+    })
+
+    document.querySelector('.family').addEventListener('click', e => {
+      var clickers = document.querySelectorAll('.family li')
+        , things = document.querySelectorAll('.list li')
+      if (e.target.tagName == 'LI') {
+        clickers.forEach(it => it.className='')
+        e.target.className='active'
+      }
+      if (e.target.textContent == 'All') {
+        things.forEach(it => it.style.display='block')
+      } else if (e.target.textContent == 'Active') {
+        things.forEach(it => {
+          if (it.firstChild.firstChild.checked == false) {
+            it.style.display='block'
+          } else {
+            it.style.display='none'
+          }
+        })
+      } else if (e.target.textContent == 'Complete') {
+        things.forEach(it => {
+          if (it.firstChild.firstChild.checked == false) {
+            it.style.display='none'
+          } else {
+            it.style.display='block'
+          }
+        })
+      }
+    })
+
+    document.querySelector('header label').addEventListener('click', e => {
+      var checkboxes = document.querySelectorAll('.check')
+      if (isAllChecked()) {
+        checkboxes.forEach(it => {
+          it.checked = false
+        })
+        num = checkboxes.length
+        setItemNumber()
+      } else {
+        checkboxes.forEach(it => {
+          it.checked = true
+        })
+        num = 0
+        setItemNumber()
+        footer.style.display = 'none'
+      }
+    })
+
+    function isAllChecked() {
+      var checkboxes = document.querySelectorAll('.check')
+        , ischecked = true
+      checkboxes.forEach(it => {
+        if (it.checked == false) ischecked = false
+      })
+      return ischecked
+    }
+
+    function isNothingDone() {
+      var checkboxes = document.querySelectorAll('.check')
+        , result = true
+      checkboxes.forEach(it => {
+        if (it.checked == true) result = false
+      })
+      return result
+    }
+
+
+    function add(message) {
+      var li = document.createElement('li')
+        , div = document.createElement('div')
+        , input = document.createElement('input')
+        , span = document.createElement('span')
+        , button = document.createElement('button')
+      input.className='check'
+      input.type = 'checkbox'
+      input.addEventListener('click', e => {
+        if (e.target.checked) {
+          num--
+          setItemNumber()
+          if (document.querySelectorAll('.family li')[1].className == 'active') {
+            e.target.parentElement.parentElement.style.display='none'
+          }
+          clearbutton.style.display='block'
+        } else {
+          num++
+          setItemNumber()
+          if (document.querySelectorAll('.family li')[2].className == 'active') {
+            e.target.parentElement.parentElement.style.display='none'
+          }
+          if (isNothingDone()) {
+            clearbutton.style.display='none'
+          }
+        }
+      })
+      span.textContent = message
+      button.textContent = 'X'
+      button.addEventListener('click', e => {
+        list.removeChild(li)
+        if (e.target.previousElementSibling.previousElementSibling.checked == false) {
+          num--
+          setItemNumber()
+          if (num == 0) footer.style.display = 'none'
+        }
+        if (isNothingDone()) clearbutton.style.display='none'
+      })
+      div.appendChild(input)
+      div.appendChild(span)
+      div.appendChild(button)
+      li.appendChild(div)
+      list.appendChild(li)
+      num++
+      setItemNumber()
+      if (num > 0) footer.style.display = 'block'
+    }
+
+    function setItemNumber() {
+      var cal = document.querySelector('#cal')
+      if (num == 1 || num == 0) {
+        cal.textContent = num + ' item left'
+      } else {
+        cal.textContent = num + ' items left'
+      }
+    }
+  </script>
+</body>

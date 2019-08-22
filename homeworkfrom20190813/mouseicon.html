@@ -1,0 +1,48 @@
+<style>
+  img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+  }
+</style>
+
+<img src="red.png" alt="" class='i1'>
+<img src="red.png" alt="" class='i2'>
+<img src="red.png" alt="" class='i3'>
+
+<script>
+  var i1 = document.querySelector('.i1')
+  var i2 = document.querySelector('.i2')
+  var i3 = document.querySelector('.i3')
+  var angle = 0
+  var lastTime = null
+  var cornerX = 0
+  var cornerY = 0
+
+  function animate(time) {
+    console.log(1)
+    if (lastTime != null) {
+      angle += (time - lastTime) * 0.002
+    }
+    lastTime = time
+    i1.style.top = Math.sin(angle) * 50 + cornerY - 5 + 'px'
+    i1.style.left = Math.cos(angle) * 50 + cornerX - 10 + 'px'
+    i2.style.top = Math.sin(angle + Math.PI * 2 / 3) * 50 + cornerY - 5 + 'px'
+    i2.style.left = Math.cos(angle + Math.PI * 2 / 3) * 50 + cornerX - 10 + 'px'
+    i3.style.top = Math.sin(angle + Math.PI * 4 / 3) * 50 + cornerY - 5 + 'px'
+    i3.style.left = Math.cos(angle + Math.PI * 4 / 3) * 50 + cornerX - 10 + 'px'
+    requestAnimationFrame(animate)
+  }
+
+  requestAnimationFrame(animate)
+
+  addEventListener('click', e => {
+    console.log(e.pageX, e.pageY)
+  })
+
+
+  addEventListener('mousemove', e => {
+    cornerX = e.pageX
+    cornerY = e.pageY
+  })
+</script>

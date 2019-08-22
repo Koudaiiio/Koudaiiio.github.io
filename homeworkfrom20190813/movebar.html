@@ -1,0 +1,73 @@
+<style>
+  div {
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 3px;
+    position: absolute;
+    background-color: red;
+    border-radius: 2px;
+    transition: 0.1s;
+  }
+
+  p {
+    width: 100px;
+    height: 20px;
+    background-color: brown;
+    position: absolute;
+    left: 800px;
+
+  }
+</style>
+
+<div></div>
+<p></p>
+
+<script>
+  var div = document.querySelector('div')
+  var p = document.querySelector('p')
+  var init = 10
+  var initX
+  var initWidth = 100
+  var width
+  var long
+
+  addEventListener('mousedown', e => {
+    long = setInterval(increase, 100)
+    initX = e.pageX
+    console.log(e.target.tagName)
+    if (e.target.tagName == 'P') {
+      addEventListener('mousemove', changeWidth)
+    }
+  })
+
+  function changeWidth(e) {
+    width = e.pageX - initX
+    p.style.width = Math.max(0, initWidth + width) + 'px'
+  }
+
+  addEventListener('mouseup', e => {
+    clearInterval(long)
+    removeEventListener('mousemove', changeWidth)
+    initWidth += width
+  })
+
+  function increase() {
+    init += 2
+    div.style.width = init + 'px'
+  }
+
+
+  function isPressed(e) {
+    if (e.buttons == null) {
+      return e.which != 0
+    } else {
+      return e.buttons != 0
+    }
+  }
+
+
+
+  
+</script>
+
