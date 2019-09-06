@@ -1,0 +1,67 @@
+<style>
+  img {
+    height: 200px;
+  }
+</style>
+<body>
+  <button>Click me!</button>
+
+
+  <script>
+    function get(url, callback, onerror) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      xhr.send()
+      xhr.addEventListener('load', function(){
+      if (xhr.status < 400) {
+        callback(xhr.responseText)
+        } else {
+          //网络ok，响应为4xx或5xx
+          onerror(xhr)
+        }
+      })
+      xhr.addEventListener('error', function(e) {
+        //请求没有发出去，连接都没有建立
+        onerror(e)
+      })
+    }
+
+    var times = 3
+    
+    function addimage(ary) {
+      var img = document.createElement('img')
+      img.src = "http://xieranmaya.github.io/images/cats/" + ary[times].url
+      if (document.querySelector('div').children.length < 11) {
+        img.onload = function() {addimage(ary)}
+      }
+      document.querySelector('div').append(img)
+      times++
+    }
+
+
+    function initimage(ary) {
+      for (var i = 0; i < 3; i++) {
+        var img = document.createElement('img')
+        img.src = "http://xieranmaya.github.io/images/cats/" + ary[i].url
+        img.onload = function() {addimage(ary)}
+        document.querySelector('div').append(img)
+      }
+    }
+
+    var button = document.querySelector('button')
+
+    var xhr = new XMLHttpRequest()
+    xhr.open("get", "http://xieranmaya.github.io/images/cats/cats.json")
+    button.addEventListener('click', e => {
+      div = document.createElement('div')
+      div.innerHTML = '<img src="giphy.gif">'
+      document.querySelector('body').append(div)
+      xhr.send()
+      xhr.addEventListener('load', e => {
+        var ary = JSON.parse(xhr.responseText)
+        initimage(ary)
+      })
+    })
+    
+  </script>
+</body>

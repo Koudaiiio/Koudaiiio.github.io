@@ -194,14 +194,26 @@
         //   idx++
         // }
         for (var i = idx; i < targetIdx; i++) {
-          right.click()
+          setTimeout(() => right.click(),100)
+          // right.click()
         }
         while (idx > targetIdx) {
-          left.click()
+          setTimeout(() => left.click(),100)
+          // left.click()
           idx--
         }
       }
     })
+
+    document.querySelector('.outer').addEventListener('mouseenter', e => {
+      clearInterval(auto)
+    })
+
+    document.querySelector('.outer').addEventListener('mouseleave', e => {
+      auto = setInterval(() => right.click(), 3000)
+    })
+
+    var auto = setInterval(() => right.click(), 3000)
   </script>
 </body>
 </html>

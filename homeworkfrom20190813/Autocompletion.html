@@ -1,0 +1,93 @@
+
+<style>
+  div {
+    position: relative;
+  }
+
+  div ul {
+    position: absolute;
+    top: 100%;
+    margin: 0;
+    background-color: #ddd;
+  }
+</style>
+
+<body>
+  <div>
+    <input type="text">
+  </div>
+</body>
+
+<script>
+  class A {
+    constructor(node) {
+      var ul = document.createElement('ul')
+      node.append(ul)
+
+      this.input = node.children[0]
+      this.suggestion = ul
+      this.lastTime = 0
+
+
+      this.init()
+      
+    }
+
+    init() {
+      this.input.addEventListener('input', e => {
+        var time = Date.now()
+        var inputStr = this.input.value
+        if (inputStr) {
+          getSuggestion(inputStr, s => {
+            if (time > this.lastTime) {
+              this.lastTime = time
+              while(this.suggestion.firstChild) {
+                this.suggestion.removeChild(this.suggestion.firstChild)
+              }
+              s.forEach(it => {
+                var li = document.createElement('li')
+                li.textContent = it
+                li.addEventListener('click', e => {
+                  this.input.value = li.textContent
+                  getSuggestion(this.input.value, e => {
+                    for (var i in e) {
+                      this.suggestion.children[i].textContent = e[i]
+                    }
+                  })
+                })
+                this.suggestion.append(li)
+              })
+            }
+          })
+        }
+      })
+
+      this.input.addEventListener('focus', e => {
+        if (this.input.value) {
+          this.suggestion.style.display = 'block'
+        }
+      })
+
+      this.input.addEventListener('blur', e => {
+        if (!this.suggestion.matches('ul:hover'))
+          this.suggestion.style.display = 'none'
+      })
+      
+      window.addEventListener('click', e => {
+        if (!e.target.matches('ul li') && !e.target.matches('input'))
+          this.suggestion.style.display = 'none'
+      })
+    }
+
+  }
+
+  new A(document.querySelector('div'))
+
+  function getSuggestion(str, callback) {
+    var suggestions = new Array(10).fill(0).map((_, idx) => idx).map(it => str + it)
+
+    setTimeout(() => {
+      callback(suggestions)
+    }, 500 + 500 * Math.random())
+  }
+</script>

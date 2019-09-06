@@ -105,6 +105,31 @@ var koudaiiio = function () {
     return result
   }
 
+  function differenceWith(array, values, compare) {
+    var isdiff = false
+      , result = []
+    for (var i in array){
+      for (var j in values) {
+        if (compare(array[i], values[j])) {
+          isdiff = true
+          break
+        }
+      }
+      if (isdiff == false) {
+        result.push(array[i])
+      }
+    }
+    return result
+  }
+
+  function drop(array, n = 1) {
+    return array.slice(n)
+  }
+
+  function dropRight(array, n = 1) {
+    return array.slice(0, Math.max(0, array.length - n))
+  }
+
   /**
    * [flatten description]
    *
@@ -163,14 +188,128 @@ var koudaiiio = function () {
   }
 
 
+
+  function isArguments(value) {
+    return Object.prototype.toString.call(value) === '[object Arguments]'
+  }
+
+  function isArray(val) {
+    return Object.prototype.toString.call(val) === '[object Array]'
+  }
+
+  function isBoolean(val) {
+    return Object.prototype.toString.call(val) === '[object Boolean]'
+  }
+
+  function isDate(val) {
+    return Object.prototype.toString.call(val) === '[object Date]'
+  }
+
+  function isElement(val) {
+    return /Element/.test(Object.prototype.toString.call(val))
+  }
+
+  function isEmpty(val) {
+    if (!val) return true
+    for (var i in val) {return false}
+    return true
+  }
+
+  function isEqual(value, other) {
+    if (value == other) return true
+    if
+  }
+
+
+
+
+
+
+
+
+
+
+  function isObject(val) {
+    return val !== null && typeof val == 'object' || typeof val == 'function'
+  }
+
+  function isObjectLike(val) {
+    return val !== null && typeof val == 'object'
+  }
+
+  function isPlainObject(val) {
+    if (!val) return false
+    return val.__proto__ == undefined || val.__proto__.constructor.name == 'Object'
+  }
+
+  function isRegExp(val) {
+    return Object.prototype.toString.call(val) == '[object RegExp]'
+  }
+
+
+  function property(arg) {
+    if (typeof arg != 'string' && !Array.isArray(arg)) return 'Invalid argument'
+    if (typeof arg == 'string')
+      arg = arg.split('.')
+    return function(obj) {
+      for (var i of arg) {
+        obj = obj[i]
+      }
+      return obj
+    }
+  }
+
+  function matchesProperty(path, srcValue) {
+    return function(obj) {
+      return property(path)(obj) == srcValue
+    }
+  }
+  
+
+  function isMatch(object, source) {
+    if (object == source) return true
+    for (var i in source) {
+      if (typeof source[i] == 'object') {
+        return isMatch(object[i], source[i])
+      } else {
+        if (object[i] != source[i]) return false
+      }
+    }
+    return true
+  }
+
+  function matches(source) {
+    return function(obj) {
+      return isMatch(obj, source)
+    }
+  }
+
+
   return {
     chunk,
     compact,
     concat,
     difference,
     differenceBy,
+    differenceWith,
+    drop,
+    dropRight,
     flatten,
     flattenDeep,
     flattenDepth,
+    isArguments,
+    isArray,
+    isBoolean,
+    isDate,
+    isElement,
+    isEmpty,
+    isObject,
+    isObjectLike,
+    isPlainObject,
+    isRegExp,
+    property,
+    matchesProperty,
+    isMatch,
+    matches,
   }
 } ()

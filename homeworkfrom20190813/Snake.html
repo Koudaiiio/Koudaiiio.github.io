@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+
+  </div>
+
+
+  <script>
+    class Snake {
+      constructor(height = 30, width = height) {
+        this.height = height
+        this.width = width
+        this.world = Array(height).fill(0).map((_, idx) => idx).map(it => Array(width).fill(' . '))
+        this.init()
+        this.auto()
+      }
+
+      init() {
+        this.createApple()
+        var row = Math.floor(Math.random() * this.height / 2 + this.height / 4)
+        var col = Math.floor(Math.random() * this.width / 2 + this.width / 4)
+        this.world[row][col] = ' > '
+        this.head = [row, col]
+        this.tail = [row, col]
+      }
+
+      createApple() {
+        var row = Math.floor(Math.random() * this.height)
+          , col = Math.floor(Math.random() * this.width)
+        if (this.world[row][col] == ' . ') {
+          this.world[row][col] = ' Q '
+        } else {
+          this.createApple()
+        }
+      }
+
+      next() {
+        var neck = this.world[this.head[0]][this.head[1]]
+        switch (neck) {
+          case ' > ':
+            this.head[1]++
+            break;
+          case ' A ':
+            this.head[0]--
+            break
+          case ' < ':
+            this.head[1]--
+            break
+          case ' V ':
+            this.head[0]++
+            break
+        }
+        if (this.world[this.head[0]][this.head[1]] == ' Q ') {
+          this.world[this.head[0]][this.head[1]] = neck
+          this.createApple()
+        } else {
+          this.world[this.head[0]][this.head[1]] = neck
+          var tail = this.world[this.tail[0]][this.tail[1]]
+          this.world[this.tail[0]][this.tail[1]] = ' . '
+          switch (tail) {
+            case ' > ':
+              this.tail[1]++
+              break;
+            case ' A ':
+              this.tail[0]--
+              break
+            case ' < ':
+              this.tail[1]--
+              break
+            case ' V ':
+              this.tail[0]++
+              break
+          }
+        }
+      }
+
+      print() {
+        var str = '<pre>' + this.world.map(row => row.join('')).join('<br>') + '</pre>'
+
+        document.querySelector('div').innerHTML = str
+      }
+
+      auto() {
+        setInterval(() => {
+          this.next()
+          this.print()
+        }, 300)
+      }
+    }
+
+    window.addEventListener('keydown', e => {
+      switch (e.key) {
+        case 'ArrowUp':
+          s.world[s.head[0]][s.head[1]] = ' A '
+          break
+        case 'ArrowLeft':
+          s.world[s.head[0]][s.head[1]] = ' < '
+          break
+        case 'ArrowDown':
+          s.world[s.head[0]][s.head[1]] = ' V '
+          break
+        case 'ArrowRight':
+          s.world[s.head[0]][s.head[1]] = ' > '
+          break
+      }
+    })
+
+
+    var s = new Snake()
+  </script>
+</body>
+</html>

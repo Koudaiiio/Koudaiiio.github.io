@@ -129,15 +129,19 @@
 
 
   <script>
+    if (note == undefined) note = {}
+
     var input = document.querySelector('header input')
       , list = document.querySelector('.list')
       , num = 0
       , footer = document.querySelector('footer')
       , clearbutton = document.querySelector('.clear')
+      , note
       
     input.addEventListener('keydown', e => {
       if (e.key == 'Enter' && input.value != '') {
         add(input.value)
+        saveToNote(document.querySelector('.list').lastChild)
         input.value = ''
       }
     })
@@ -145,6 +149,7 @@
     input.addEventListener('blur', e => {
       if (input.value != '') {
         add(input.value)
+        saveToNote(document.querySelector('.list').lastChild)
         input.value = ''
       }
     })
@@ -153,6 +158,7 @@
       document.querySelectorAll('.list li').forEach(it => {
         if (it.firstChild.firstChild.checked == true) {
           list.removeChild(it)
+          delete(note[it.dataset.id])
         }
       })
       clearbutton.style.display='none'
@@ -194,13 +200,18 @@
         })
         num = checkboxes.length
         setItemNumber()
+        for (var i in note) {
+          note[i].done = false
+        }
       } else {
         checkboxes.forEach(it => {
           it.checked = true
         })
         num = 0
         setItemNumber()
-        footer.style.display = 'none'
+        for (var i in note) {
+          note[i].done = true
+        }
       }
     })
 
@@ -222,6 +233,52 @@
       return result
     }
 
+    function saveToNote(el) {
+      var EventId = el.dataset.id
+      note[EventId] = {
+        name: el.children[0].children[1].textContent,
+        done: el.children[0].children[0].checked
+      }
+    }
+
+    function saveState(el) {
+      Array.from(el.children).forEach(it => {
+        if (it.className == 'active')
+          localStorage.todoListState = it.textContent
+      })
+    }
+
+    function saveToStorage() {
+      localStorage.todoList = JSON.stringify(note)
+    }
+
+    function getStorage() {
+      var j = 0
+      for (var i in note) {
+        add(note[i].name)
+        list.children[j].dataset.id = i
+        if (note[i].done == true) {
+          list.children[j].children[0].children[0].click()
+        }
+        j++
+      }
+      document.querySelectorAll('.family li').forEach(it => {
+        if (it.textContent == localStorage.todoListState)
+          it.click()
+      })
+    }
+
+    window.onbeforeunload = function() {
+      saveState(document.querySelector('.family'))
+      saveToStorage()
+    }
+
+    window.onload = function() {
+      note = JSON.parse(localStorage.todoList)
+      if (note != {})
+        getStorage()
+    }
+
 
     function add(message) {
       var li = document.createElement('li')
@@ -229,6 +286,7 @@
         , input = document.createElement('input')
         , span = document.createElement('span')
         , button = document.createElement('button')
+      li.dataset.id = Date.now()
       input.className='check'
       input.type = 'checkbox'
       input.addEventListener('click', e => {
@@ -249,10 +307,13 @@
             clearbutton.style.display='none'
           }
         }
+        saveToNote(e.target.parentElement.parentElement)
       })
       span.textContent = message
       button.textContent = 'X'
       button.addEventListener('click', e => {
+        var p = e.target.parentElement.parentElement.dataset.id
+        delete(note[p])
         list.removeChild(li)
         if (e.target.previousElementSibling.previousElementSibling.checked == false) {
           num--
@@ -261,16 +322,14 @@
         }
         if (isNothingDone()) clearbutton.style.display='none'
       })
-      div.appendChild(input)
-      div.appendChild(span)
-      div.appendChild(button)
+      div.append(input,span,button)
       li.appendChild(div)
       list.appendChild(li)
       num++
       setItemNumber()
       if (num > 0) footer.style.display = 'block'
     }
-
+    
     function setItemNumber() {
       var cal = document.querySelector('#cal')
       if (num == 1 || num == 0) {

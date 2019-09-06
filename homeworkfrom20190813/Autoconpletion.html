@@ -1,0 +1,87 @@
+
+<style>
+  div {
+    position: relative;
+  }
+
+  div ul {
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    background-color: #ccc;
+  }
+  
+</style>
+
+<body>
+  <div>
+    <input type="text">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+
+<script>
+  var input = document.querySelector('input')
+  var wrapper = document.querySelector('div')
+  var list = document.querySelector('ul')
+
+  input.addEventListener('input', e => {
+    getSuggestion(input.value, assign)
+    list.style.display = 'block'
+    if (input.value == '') {
+      list.style.display = 'none'
+    }
+  })
+
+  input.addEventListener('focus', e => {
+    if (input.value != '') {
+      getSuggestion(input.value, assign)
+      list.style.display = 'block'
+    }
+  })
+
+  window.addEventListener('click', e => {
+    if (!e.target.matches('ul li') && !e.target.matches('input'))
+      list.style.display = 'none'
+  })
+
+  Array.from(list.children).forEach(it => {
+    it.addEventListener('click', e => {
+      input.value = it.textContent
+      getSuggestion(input.value, assign)
+    })
+  })
+
+  input.addEventListener('blur', e => {
+    if (list.matches('ul:hover'))
+      return
+    list.style.display = 'none'
+  })
+
+  function getSuggestion(str, callback) {
+    var suggestions = new Array(10).fill(0).map((_, idx) => idx).map(it => str + it)
+
+    setTimeout(() => {
+      callback(suggestions)
+    }, 500 + 500 * Math.random())
+  }
+
+  function assign(e) {
+    for (var i in e) {
+      list.children[i].textContent = e[i]
+    }
+  }
+
+</script>

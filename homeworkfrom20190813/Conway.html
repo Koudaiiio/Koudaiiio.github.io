@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    input {
+      margin: 0;
+      width: 25px;
+      height: 25px;
+    }
+  </style>
+
+</head>
+<body>
+  <button id='next'>next</button>
+  <button id='auto'>auto play</button>
+  <button id='stop'>stop</button>
+  <div class='world'>
+  </div>
+
+  <script>
+    class Conway {
+      constructor(height = 20, width = height) {
+        this.height = height
+        this.width = width
+        this.world = Array(this.height).fill(0).map((_, idx) => idx).map(it => Array(this.width).fill(0))
+
+        this.autoplay = true
+        this.fillRandom()
+
+      }
+
+      fillRandom(ratio = 0.2) {
+        for (var i in this.world) {
+          for (var j in this.world) {
+            if (Math.random() < 0.2) {
+              this.world[i][j] = 1
+            }
+          }
+        }
+      }
+
+      next() {
+        var world = Array(this.height).fill(0).map((_, idx) => idx).map(it => Array(this.width).fill(0))
+        this.world.forEach((row, rowIdx) => {
+          row.forEach((cell, colIdx) => {
+            var neighbors = 0
+            for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+              for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+                if (this.world[i] && this.world[i][j]) {
+                  neighbors += this.world[i][j]
+                }
+              }
+            }
+            neighbors -= cell
+            if (neighbors == 3) {
+              world[rowIdx][colIdx] = 1
+            } else if (cell == 1 && neighbors == 2) {
+              world[rowIdx][colIdx] = 1
+            } else {
+              world[rowIdx][colIdx] = 0
+            }
+          })
+        })
+        this.world = world
+      }
+
+      getString() {
+        return '\n' + this.world.map(it => it.map(it => it ? 'O' : '.').join('')).join('\n')
+      }
+
+      auto() {
+        setInterval(() => {
+          this.next()
+          var str = this.getString()
+          console.log(str)
+        }, 500)
+      }
+
+      setState(row, col, state) {
+        this.world[row][col] = state
+      }
+    }
+
+    var c = new Conway
+
+    function makeup(c) {
+      return '<div>' + c.world.map(row => '<div>' + row.map(col => {
+        var s = col ? "checked" : ''
+        return "<input type='radio' " + s + ">"}).join('') + '</div>').join('') + '</div>'
+    }
+
+    document.querySelector('.world').innerHTML = makeup(c)
+
+    document.querySelector('.world').addEventListener('click', e => {
+      if (e.target.matches('input')) {
+        var row = Array.from(e.target.parentNode.parentNode.children).indexOf(e.target.parentNode)
+        var col = Array.from(e.target.parentNode.children).indexOf(e.target)
+        c.setState(row, col, Number(e.target.checked))
+      }
+    })
+
+    document.querySelector('#next').addEventListener('click', e => {
+      c.next()
+      document.querySelector('.world').innerHTML = makeup(c)
+    })
+
+    var Interval
+    document.querySelector('#auto').addEventListener('click', e => {
+      c.next()
+      document.querySelector('.world').innerHTML = makeup(c)
+      Interval = setInterval(() => {
+        c.next()
+        document.querySelector('.world').innerHTML = makeup(c)
+      },300)
+    })
+
+    document.querySelector('#stop').addEventListener('click', e => {
+      clearInterval(Interval)
+    })
+
+  </script>
+</body>
+</html>

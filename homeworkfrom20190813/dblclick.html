@@ -1,0 +1,30 @@
+<body>
+  <div>
+    <span>asdfasdf</span>
+  </div>
+
+  <script>
+    var wrapper = document.querySelector('div')
+    document.querySelector('span').addEventListener('dblclick', b)
+
+    function b(e) {
+      console.log(1)
+      var wrapper = e.target.parentElement
+      var v = e.target.textContent
+        , input = document.createElement('input')
+      input.value = v
+      input.addEventListener('blur', e => {
+        var wrapper = e.target.parentElement
+        var v = e.target.value
+          , span = document.createElement('span')
+        span.textContent = v
+        span.addEventListener('dblclick', b)
+        wrapper.removeChild(e.target)
+        wrapper.append(span)
+      })
+      wrapper.removeChild(e.target)
+      wrapper.append(input)
+      input.focus()
+    }
+  </script>
+</body>
