@@ -106,9 +106,9 @@ var koudaiiio = function () {
   }
 
   function differenceWith(array, values, compare) {
-    var isdiff = false
-      , result = []
+    var result = []
     for (var i in array){
+      var isdiff = false
       for (var j in values) {
         if (compare(array[i], values[j])) {
           isdiff = true
@@ -121,13 +121,62 @@ var koudaiiio = function () {
     }
     return result
   }
-
+  
   function drop(array, n = 1) {
     return array.slice(n)
   }
 
   function dropRight(array, n = 1) {
     return array.slice(0, Math.max(0, array.length - n))
+  }
+  
+  function dropRightWhile(array, fuc) {
+    fuc = iteratee(fuc)
+    for (var i = array.length - 1; i >= 0; i--) {
+      if (fuc(array[i])) {
+        array.pop()
+      } else {
+        break
+      }
+    }
+    return array
+  }
+  
+  function dropWhile(array, fuc) {
+    fuc = iteratee(fuc)
+    for (var i = 0; i < array.length; i++) {
+      if (fuc(array[i])) {
+        array.shift()
+        i--
+      } else {
+        break
+      }
+    }
+    return array
+  }
+  
+
+  function fill(array, value, start = 0, end = array.length) {
+    for(var i = start; i < end; i++) {
+      array[i] = value
+    }
+    return array
+  }
+
+  function findIndex(array, fuc, fromIndex = 0) {
+    fuc = iteratee(fuc)
+    for (var i = fromIndex; i < array.length; i++) {
+      if (fuc(array[i])) {return i}
+    }
+    return -1
+  }
+
+  function findLastIndex(array, fuc, fromIndex = array.length - 1) {
+    fuc = iteratee(fuc)
+    for (var i = fromIndex; i >= 0; i--) {
+      if (fuc(array[i])) {return i}
+    }
+    return -1
   }
 
   /**
@@ -188,6 +237,160 @@ var koudaiiio = function () {
   }
 
 
+  function fromPairs(pairs) {
+    var obj = {}
+    for (var i of pairs) {
+      obj[i[0]] = i[1]
+    }
+    return obj
+  }
+
+  function head(array) {
+    if (array.length) {
+      return array[0]
+    }
+    return undefined
+  }
+
+  function indexOf(array, value, fromIndex = 0) {
+    for (var i = fromIndex; i < array.length; i++) {
+      if (array[i] == value) return i
+    }
+    return -1
+  }
+
+  function initial(array) {
+    if (array.length <= 1) return []
+    return array.slice(0, -1)
+  }
+
+  function intersection(...array) {
+    if (array.length == 1) return array[0]
+    var ary = []
+    for (var j of array[0]) {
+      for (var i = 1; i < array.length; i++) {
+        if (array[i].indexOf(j) == -1) break
+        if (i == array.length - 1) ary.push(j)
+      }
+    }
+    return ary
+  }
+
+  function join(array, separator = ',') {
+    if (array.length == 0) return ''
+    if (array.length == 1) return array[0]
+    var str = ''
+    for (var i = 0; i < array.length - 1; i++) {
+      str += array[i] + separator
+    }
+    return str + array[array.length - 1]
+  }
+
+  function last(array) {
+    return array[array.length - 1]
+  }
+
+  function lastIndexOf(array, value, fromIndex = array.length - 1) {
+    for (var i = fromIndex; i >= 0; i--) {
+      if (array[i] == value) return i
+    }
+    return -1
+  }
+
+  function nth(array, n = 0) {
+    if (n >= 0) {
+      return array[n]
+    } else {
+      return array[array.length - n]
+    }
+  }
+
+  function pull(array, ...values) {
+    for (var i = 0; i < array.length; i++) {
+      if (values.indexOf(array[i]) >= 0) {
+        array.splice(i, 1)
+        i--
+      }
+    }
+    return array
+  }
+
+  function pullAll(array, values) {
+    for (var i = 0; i < array.length; i++) {
+      if (values.indexOf(array[i]) >= 0) {
+        array.splice(i, 1)
+        i--
+      }
+    }
+    return array
+  }
+
+  function pullAllBy(array, values, fuc) {
+    fuc = iteratee(fuc)
+    for (var i = 0; i < array.length; i++) {
+      for (var j of values) {
+        if (fuc(array[i]) == fuc(j)) {
+          array.splice(i--, 1)
+          break
+        }
+      }
+    }
+    return array
+  }
+
+  function pullAllWith(array, values, comparator) {
+    for (var i = 0; i < array.length; i++) {
+      for (var j of values) {
+        if (comparator(array[i], j)) {
+          array.splice(i--, 1)
+          break
+        }
+      }
+    }
+    return array
+  }
+
+  function pullAt(array, ...indexes) {
+    var ary = []
+      , temp = 0
+    if (isArray(indexes[0])) indexes = flattenDeep(indexes)
+    for (var i of indexes) {
+      ary.push(array[i - temp++])
+      temp--
+      array.splice(i - temp++, 1)
+    }
+    return ary
+  }
+
+  function remove(array, fuc) {
+    var ary = []
+    for (var i = 0; i < array.length; i++) {
+      if (fuc(array[i])) {
+        ary.push(array[i])
+        array.splice(i--, 1)
+      }
+    }
+    return ary
+  }
+
+  function reverse(array) {
+    var ary = []
+    for (var i of array) {
+      ary.unshift(i)
+    }
+    return ary
+  }
+
+  function sortedIndex(array, value) {
+    if (array.length == 0) return 0
+    if (value <= array[0]) return 0
+    if (value > array[array.length - 1]) return array.length
+    for (var i = 1; i < array.length; i++) {
+      if (value > array[i - 1] && value <= array[i]) return i
+    }
+  }
+
+
 
   function isArguments(value) {
     return Object.prototype.toString.call(value) === '[object Arguments]'
@@ -217,7 +420,33 @@ var koudaiiio = function () {
 
   function isEqual(value, other) {
     if (value == other) return true
-    // if
+    if (isNaN(value) && isNaN(other)) return true
+    if ((isFunction(val) && isFunction(other)) || (isRegExp(val) && isRegExp(other))) {
+      return value.toString() === other.toString()
+    }
+    if (isObjectLike(value) && isObjectLike(other)) {
+      var l1, l2
+      for (var i in value) {l1++}
+      for (var j in other) {l2++}
+      if (l1 != l2) {return false}
+      for (var i in value) {
+        if (!isEqual(value[i], other[i])) return false
+      }
+    }
+    return true
+  }
+
+  function isEqualWith(value, other, customizer) {
+    if (customizer == undefined) return isEqual(value, other)
+    if (typeof value != typeof other) return false
+    if (isObjectLike(value) && isObjectLike(other)) {
+      for (var i in value) {
+        for (var j in other) {
+          if (customizer(value[i], other[j])) return true
+        }
+      }
+    }
+    return customizer(value, other) == true
   }
 
 
@@ -244,6 +473,21 @@ var koudaiiio = function () {
 
   function isRegExp(val) {
     return Object.prototype.toString.call(val) == '[object RegExp]'
+  }
+
+  function isString(val) {
+    return Object.prototype.toString.call(val) =='[object String]'
+  }
+
+  function isFunction(val) {
+    return Object.prototype.toString.call(val) == '[object Function]'
+  }
+
+  function isNaN(val) {
+    if (val != undefined && val != null) {
+      return  val.toString() == 'NaN'
+    }
+    return false
   }
 
 
@@ -285,6 +529,26 @@ var koudaiiio = function () {
   }
 
 
+  function iteratee(val) {
+    if (isString(val) || isNumber(val)) {
+      return property(val)
+    }
+    if (isArray(val)) {
+      return function(obj) {
+        var ismap = true
+        for (var i = 0; i < val.length; i+=2) {
+          ismap = ismap && matchesProperty(val[i], val[i + 1])(obj)
+        }
+        return ismap
+      }
+    }
+    if (isPlainObject(val)) {
+      return matches(val)
+    }
+    return val
+  }
+
+
   return {
     chunk,
     compact,
@@ -294,15 +558,39 @@ var koudaiiio = function () {
     differenceWith,
     drop,
     dropRight,
+    dropRightWhile,
+    dropWhile,
+    fill,
+    findIndex,
+    findLastIndex,
     flatten,
     flattenDeep,
     flattenDepth,
+    fromPairs,
+    head,
+    indexOf,
+    initial,
+    intersection,
+    join,
+    last,
+    lastIndexOf,
+    nth,
+    pull,
+    pullAll,
+    pullAllBy,
+    pullAllWith,
+    pullAt,
+    remove,
+    reverse,
+    sortedIndex,
     isArguments,
     isArray,
     isBoolean,
     isDate,
     isElement,
     isEmpty,
+    isEqual,
+    isEqualWith,
     isObject,
     isObjectLike,
     isPlainObject,
@@ -311,5 +599,6 @@ var koudaiiio = function () {
     matchesProperty,
     isMatch,
     matches,
+    iteratee,
   }
 } ()
