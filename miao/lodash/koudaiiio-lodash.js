@@ -253,6 +253,11 @@ var koudaiiio = function () {
   }
 
   function indexOf(array, value, fromIndex = 0) {
+    if (isNaN(value)) {
+      for (var i = fromIndex; i < array.length; i++) {
+        if (isNaN(array[i])) return i
+      }
+    }
     for (var i = fromIndex; i < array.length; i++) {
       if (array[i] == value) return i
     }
@@ -281,7 +286,7 @@ var koudaiiio = function () {
     if (array.length == 1) return array[0]
     var str = ''
     for (var i = 0; i < array.length - 1; i++) {
-      str += array[i] + separator
+      str += '' + array[i] + separator
     }
     return str + array[array.length - 1]
   }
@@ -291,6 +296,11 @@ var koudaiiio = function () {
   }
 
   function lastIndexOf(array, value, fromIndex = array.length - 1) {
+    if (isNaN(value)) {
+      for (var i = fromIndex; i >= 0; i--) {
+        if (isNaN(array[i])) return i
+      }
+    }
     for (var i = fromIndex; i >= 0; i--) {
       if (array[i] == value) return i
     }
@@ -301,7 +311,7 @@ var koudaiiio = function () {
     if (n >= 0) {
       return array[n]
     } else {
-      return array[array.length - n]
+      return array[array.length + n]
     }
   }
 
@@ -488,6 +498,10 @@ var koudaiiio = function () {
       return  val.toString() == 'NaN'
     }
     return false
+  }
+
+  function isNumber(val) {
+    return Object.prototype.toString.call(val) == '[object Number]'
   }
 
 
