@@ -442,7 +442,7 @@ var koudaiiio = function () {
         if (!isEqual(value[i], other[i])) return false
       }
     }
-    return true
+    return value == other
   }
 
   function isEqualWith(value, other, customizer) {
