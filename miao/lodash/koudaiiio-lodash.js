@@ -431,14 +431,13 @@ var koudaiiio = function () {
   function isEqual(value, other) {
     if (value == other) return true
     if (isNaN(value) && isNaN(other)) return true
-    if ((isFunction(val) && isFunction(other)) || (isRegExp(val) && isRegExp(other))) {
+    if ((isFunction(value) && isFunction(other)) || (isRegExp(value) && isRegExp(other))) {
       return value.toString() === other.toString()
     }
     if (isObjectLike(value) && isObjectLike(other)) {
-      var l1, l2
-      for (var i in value) {l1++}
-      for (var j in other) {l2++}
-      if (l1 != l2) {return false}
+      var valuekeys = Object.keys(value)
+        , otherkeys = Object.keys(other)
+      if (valuekeys.length != otherkeys.length) {return false}
       for (var i in value) {
         if (!isEqual(value[i], other[i])) return false
       }
