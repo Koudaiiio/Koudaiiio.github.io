@@ -400,6 +400,94 @@ var koudaiiio = function () {
     }
   }
 
+  function sortedIndexBy(array, value, fuc) {
+    fuc = iteratee(fuc)
+    var ary = array.map(it => fuc(it))
+    var val = fuc(value)
+    return sortedIndex(ary, val)
+  }
+
+  function sortedIndexOf(array, value) {
+    return indexOf(array, value)
+  }
+
+  function sortedLastIndex(array, value) {
+    if (array.length == 0) return 0
+    if (value <= array[0]) return 0
+    if (value > array[array.length - 1]) return array.length
+    for (var i = array.length - 1; i >= 0; i--) {
+      if (value > array[i - 1] && value <= array[i]) return i
+    }
+  }
+
+  function sortedLastIndexBy(array, value, fuc) {
+    fuc = iteratee(fuc)
+    var ary = array.map(it => fuc(it))
+      , val = fuc(value)
+    return sortedLastIndex(ary, val)
+  }
+
+  function sortedLastIndexOf(array, value) {
+    return lastIndexOf(array, value)
+  }
+
+  function sortedUniq(array) {
+    var ary = [array[0]]
+    for (var i = 1; i < array.length; i++) {
+      if (array[i] != ary[ary.length - 1]) ary.push(array[i])
+    }
+    return ary
+  }
+
+  function sortedUniqBy(array, fuc) {
+    fuc = iteratee(fuc)
+    var ary = [array[0]]
+    for (var i = 1; i < array.length; i++) {
+      if (fuc(array[i]) != fuc(ary[ary.length - 1])) ary.push(array[i])
+    }
+    return ary
+  }
+
+  function tail(array) {
+    return array.slice(1)
+  }
+
+  function take(array, n = 1) {
+    return array.slice(0, n)
+  }
+
+  function takeRight(array, n = 1) {
+    return array.slice(Math.max(array.length - n), 0)
+  }
+
+  function takeRightWhile(array, fuc) {
+    fuc = iteratee(fuc)
+    var j = 0
+    for (var i = array.length - 1; i >= 0; i--) {
+      if (fuc(array[i], i, array)) {
+        j++
+      } else {
+        break
+      }
+    }
+    return array.slice(Math.max(0, array.length - j))
+  }
+
+  function takeWhile(array, fuc) {
+    fuc = iteratee(fuc)
+    for (var i = 0; i < array.length; i++) {
+      if (!fuc(array[i], i, array)) {
+        return array.slice(0, i)
+      }
+    }
+    return array.slice()
+  }
+
+
+
+
+
+
 
 
   function isArguments(value) {
@@ -596,6 +684,17 @@ var koudaiiio = function () {
     remove,
     reverse,
     sortedIndex,
+    sortedIndexBy,
+    sortedLastIndex,
+    sortedLastIndexBy,
+    sortedLastIndexOf,
+    sortedUniq,
+    sortedUniqBy,
+    tail,
+    take,
+    takeRight,
+    takeRightWhile,
+    takeWhile,
     isArguments,
     isArray,
     isBoolean,
