@@ -416,7 +416,7 @@ var koudaiiio = function () {
     if (value <= array[0]) return 0
     if (value > array[array.length - 1]) return array.length
     for (var i = array.length - 1; i >= 0; i--) {
-      if (value > array[i - 1] && value <= array[i]) return i
+      if (value >= array[i - 1] && value < array[i]) return i
     }
   }
 
@@ -457,7 +457,7 @@ var koudaiiio = function () {
   }
 
   function takeRight(array, n = 1) {
-    return array.slice(Math.max(array.length - n), 0)
+    return array.slice(Math.max((array.length - n), 0)
   }
 
   function takeRightWhile(array, fuc) {
@@ -481,6 +481,120 @@ var koudaiiio = function () {
       }
     }
     return array.slice()
+  }
+
+  function union(...arrays) {
+    var ary = arrays[0]
+    for (var i = 1; i < arrays.length; i++) {
+      for (var j of arrays[i]) {
+        if (ary.indexOf(j) == -1) {
+          ary.push(j)
+        }
+      }
+    }
+    return ary
+  }
+
+  function unionBy(...arrays, fuc) {
+    fuc = iteratee(fuc)
+    var ary = arrays[0]
+      , mapary = ary.map(it => fuc(it))
+    for (var i = 1; i < arrays.length; i++) {
+      for (var j of arrays[i]) {
+        if (mapary.indexOf(fuc(j) == -1)) {
+          ary.push(j)
+          mapary.push(fuc(j))
+        }
+      }
+    }
+    return ary
+  }
+
+  function unionWith(...arrays, comparator) {
+    var ary = arrays[0]
+    for (var i = 1; i < arrays.length; i++) {
+      for (var j of arrays[i]) {
+        var uni = true
+        for (var k of ary) {
+          if (comparator(j, k)) {
+            uni = false
+            break
+          }
+        }
+        if (uni) {ary.push(j)}
+      }
+    }
+    return ary
+  }
+
+  function uniq(array) {
+    var ary = []
+    for (var i of array) {
+      if (ary.indexOf(i) == -1) {
+        ary.push(i)
+      }
+    }
+    return ary
+  }
+
+  function uniqBy(array, fuc) {
+    fuc = iteratee(fuc)
+    var ary = []
+      , mapary = []
+    for (var i of array) {
+      if (mapary.indexOf(fuc(i)) == -1) {
+        ary.push(i)
+        mapary.push(fuc(i))
+      }
+    }
+    return ary
+  }
+
+  function uniqWith(array, comparator) {
+    var ary = [array[0]]
+    for (var i = 1; i < array.length; i++) {
+      var isMap = false
+      for (var j of ary) {
+        if (comparator(array[i], j)) {
+          isMap = true
+          break
+        }
+      }
+      if (!isMap) {
+        ary.push(array[i])
+      }
+    }
+  }
+
+  function unzip(array) {
+    var ary = []
+    for (var i = 0; i < array[0].length; i++) {
+      var part = []
+      for (var j of array) {
+        part.push(j[i])
+      }
+      ary.push(part)
+    }
+    return ary
+  }
+
+  function unzipWith(array, fuc) {
+    fuc = iteratee(fuc)
+    var ary = []
+    for (var i = 0; i < array[0].length; i++) {
+      ary.push(fuc(array[0][i], array[1][i]))
+    }
+    return ary
+  }
+
+  function without(array, ...values) {
+    var ary = []
+    for (var i of array) {
+      if (values.indexOf(i) == -1) {
+        ary.push(i)
+      }
+    }
+    return ary
   }
 
 
@@ -685,6 +799,7 @@ var koudaiiio = function () {
     reverse,
     sortedIndex,
     sortedIndexBy,
+    sortedIndexOf,
     sortedLastIndex,
     sortedLastIndexBy,
     sortedLastIndexOf,
@@ -695,6 +810,17 @@ var koudaiiio = function () {
     takeRight,
     takeRightWhile,
     takeWhile,
+    union,
+    unionBy,
+    unionWith,
+    uniq,
+    uniqBy,
+    uniqWith,
+    unzip,
+    unzipWith,
+    without,
+
+    
     isArguments,
     isArray,
     isBoolean,
