@@ -495,12 +495,12 @@ var koudaiiio = function () {
     return ary
   }
 
-  function unionBy(...arrays, fuc) {
-    fuc = iteratee(fuc)
-    var ary = arrays[0]
+  function unionBy(array, ...rest) {
+    fuc = iteratee(rest[rest.length - 1])
+    var ary = array
       , mapary = ary.map(it => fuc(it))
-    for (var i = 1; i < arrays.length; i++) {
-      for (var j of arrays[i]) {
+    for (var i = 0; i < rest.length - 1; i++) {
+      for (var j of rest[i]) {
         if (mapary.indexOf(fuc(j) == -1)) {
           ary.push(j)
           mapary.push(fuc(j))
@@ -510,10 +510,11 @@ var koudaiiio = function () {
     return ary
   }
 
-  function unionWith(...arrays, comparator) {
-    var ary = arrays[0]
-    for (var i = 1; i < arrays.length; i++) {
-      for (var j of arrays[i]) {
+  function unionWith(array, ...rest) {
+    var comparator = rest[rest.length - 1]
+      , ary = array
+    for (var i = 0; i < rest.length - 1; i++) {
+      for (var j of rest[i]) {
         var uni = true
         for (var k of ary) {
           if (comparator(j, k)) {
