@@ -457,7 +457,7 @@ var koudaiiio = function () {
   }
 
   function takeRight(array, n = 1) {
-    return array.slice(Math.max((array.length - n), 0)
+    return array.slice(Math.max(array.length - n, 0))
   }
 
   function takeRightWhile(array, fuc) {
@@ -820,7 +820,7 @@ var koudaiiio = function () {
     unzipWith,
     without,
 
-    
+
     isArguments,
     isArray,
     isBoolean,
