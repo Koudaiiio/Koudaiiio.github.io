@@ -1,0 +1,8 @@
+{
+  "name": "vote",
+  "version": "0.0.1",
+  "description": "A simple vote system",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -158,6 +158,12 @@ function listAllFilesPromise(dirPath) {
   })
 }
 
+function listAllFilesPromise(path) {
+  return fsp.stat(path).then(stat => {
+    
+  })
+}
+
 
 var files = listAllFiles('c:/')
 
