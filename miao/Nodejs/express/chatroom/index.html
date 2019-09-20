@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat  Room</title>
+  <style>
+    body {
+      background-color: red;
+      font-size: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id='msgs'></div>
+
+  <input type="text" id='msgInput' />
+
+  <button onclick='send()'>发送</button>
+
+  <script>
+
+    function getNewMsg() {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', '/msg')
+      xhr.onload = () => {
+        JSON.parse(xhr.responseText).forEach(msg => {
+
+        })
+      }
+      xhr.send()
+    }
+  
+    function send() {
+      var msg = msgInput.value
+
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', '/')
+      xhr.send(msg)
+    }
+  </script>
+</body>
+</html>
