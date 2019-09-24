@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>创建投票</title>
+</head>
+<body>
+  <h2>创建投票</h2>
+  <form action="/create-vote" method="POST">
+    <div><input type="text" placeholder="标题" name='title' required /></div>
+    <div><input type="text" placeholder="问题描述" name='desc' /></div>
+    <div><input type="text" placeholder="选项" name='options' /><button type='button' class='remove-option'>-</button></div>
+    <div><input type="text" placeholder="选项" name='options' /><button type='button' class='remove-option'>-</button></div>
+    <div><button type='button' id="add-option">添加选项</button></div>
+    <div>
+      非匿名<input type="radio" value="1" name='anonymouse' checked />
+      匿名<input type="radio" value="0" name='anonymouse' />
+    </div>
+    <div><input type="datetime-local" placeholder="截止日期" name='deadline' /></div>
+    <select name="singleSelection">
+      <option value="1">单选</option>
+      <option value="0">多选</option>
+    </select> <br>
+    <button>创建投票</button>
+  </form>
+
+  <script>
+    var form = document.querySelector('form')
+    var addBtn = document.querySelector('#add-option')
+
+    form.addEventListener('click', e => {
+      if (e.target.matches('.remove-option')) {
+        console.log(5)
+        e.target.parentNode.remove()
+      }
+
+      if (e.target.matches('#add-option')) {
+        var node = document.createElement('div')
+        node.innerHTML = "<div><input type='text' placeholder='选项' name='options' /><button type='button' class='remove-option'>-</button></div>"
+        form.insertBefore(node.firstChild, e.target.parentNode)
+      }
+    })
+  
+  </script>
+</body>
+</html>
