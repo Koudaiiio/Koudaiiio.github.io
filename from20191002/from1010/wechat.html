@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wechat</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" >
+
+  <style>
+    .home-nav > div {
+      text-align: center;
+    }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+
+    #app {
+      width: 400px;
+      height: 100%;
+      margin: auto;
+      border: 3px solid;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div id="app" style="height: 100%;">
+    <router-view></router-view>
+  </div>
+  
+
+  
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+
+    var Index = {
+      template : `
+      <div style="display: flex; flex-flow: column; height: 100%;">
+        <main style="flex-grow: 1">
+          <router-view></router-view>
+        </main>
+        <div class="container" style="width: 100%">
+          <div class="row home-nav" style="font-size: 2em">
+            <div class="col-xs-3">
+              <router-link to="/index/recent">微信</router-link>
+            </div>
+            <div class="col-xs-3">
+              <router-link to="/index/contacts">通信录</router-link>
+            </div>
+            <div class="col-xs-3">
+              <router-link to="/index/discover">发现</router-link>
+            </div>
+            <div class="col-xs-3">
+              <router-link to="/index/me">我</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      `
+    }
+
+    var RecentList = {
+      template: `
+        <div>
+          <h1>微信</h1>
+          <ul>
+            <li><router-link to="/chatting/mike">Mike</router-link></li>
+            <li><router-link to="/chatting/van">Van</router-link></li>
+            <li><router-link to="/chatting/Billy">Billy</router-link></li>
+          </ul>
+          <router-view></router-view>
+        </div>
+      `
+    }
+
+    var Contacts = {
+      template: `
+        <div>
+          <h1>通信录</h1>
+          <ul>
+            <li><router-link to="/profile/mike">Mike</router-link></li>
+            <li><router-link to="/profile/van">Van</router-link></li>
+            <li><router-link to="/profile/Billy">Billy</router-link></li>
+          </ul>
+        </div>
+      `
+    }
+
+    var Discover = {
+      template: `
+        <div>
+          <h1>发现</h1>
+          <ul>
+            <li><router-link to="/circle">朋友圈</router-link></li>
+            <li><router-link to="/see">看点</router-link></li>
+          </ul>
+        </div>
+      `
+    }
+
+    var Me = {
+      template:`
+        <div>
+          <h1>我的</h1>
+          <div>Me</div>
+        </div>
+      `
+    }
+
+    var Circle = {
+      template: `
+        <div style="height: 100%; width: 100%;"><img src="4.jpg" style="height: 100%"></div>
+      `
+    }
+
+    var Chatting = {
+      template : `
+        <div>
+          <button @click="back" class="btn btn-primary">返回</button>
+          <div>
+            Talking to {{$route.params.id}} 
+          </div>
+          <router-link :to=" '/profile/' + $route.params.id">详细信息</router-link>
+        </div>
+      `,
+      methods: {
+        back() {
+          this.$router.go(-1)
+        }
+      }
+    }
+
+    var Profile = {
+      template : `
+        <div>
+          <button @click="back" class="btn btn-primary">返回</button>
+          <div>
+            Informations about {{$route.params.id}} 
+          </div>
+          <router-link class="btn btn-primary" :to="'/chatting/' + $route.params.id">开始聊天</router-link>
+        </div>
+      `,
+      methods: {
+        back() {
+          this.$router.go(-1)
+        }
+      }
+    }
+
+
+    var router = new VueRouter({
+      routes: [{
+          path: '/',
+          redirect: '/index'
+        }, {
+          path: '/index',
+          component: Index,
+          redirect: '/index/recent',
+          children: [{
+            path: 'recent',
+            component: RecentList,
+          }, {
+            path: 'contacts',
+            component: Contacts,
+          }, {
+            path: 'discover',
+            component: Discover,
+          }, {
+            path: 'me',
+            component: Me,
+          }]
+        }, {
+          path: '/circle',
+          component: Circle,
+        }, {
+          path: '/chatting/:id',
+          component: Chatting
+        }, {
+          path: '/profile/:id',
+          component: Profile,
+        }]
+    })
+
+    var app = new Vue({
+      el: '#app',
+      router
+    })
+    
+  </script>
+</body>
+</html>

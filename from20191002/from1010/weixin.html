@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <style>
+    #app {
+      width: 500px;
+      height: 800px;
+      margin: auto;
+      border: 4px solid;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      width: 100%;
+      flex: 1;
+      border: 1px solid;
+    }
+
+    .content {
+      flex: 10;
+      border: 1px solid;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      height: 100px;
+      border-bottom: 2px solid;
+    }
+
+    .friend {
+      height: 100px;
+      border-bottom: 1px solid;
+    }
+
+    .comp {
+      height: 70px;
+      box-shadow: 0 0 5px black;
+    }
+
+    .navigator {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      border: 1px solid;
+    }
+
+    .navigator a {
+      flex: 1;
+      border: 1px solid;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <div class="header">微信</div>
+    <div class="content"><router-view></router-view></div>
+    <div class="navigator">
+      <router-link to="/">微信</router-link>
+      <router-link to="/friends">通讯录</router-link>
+      <router-link to="/findout">发现</router-link>
+    </div>
+  </div>
+  
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    var router = new VueRouter({
+      routes : [
+        { path: '/', component: {
+          template: `
+            <div class="messages">
+              <div class="message">
+                <div class="avatar"><img src="1.png"></div>
+                <div>Goooooooooooo</div>
+              </div>
+              <div class="message">
+                <div class="avatar"><img src="1.png"></div>
+                <div>aaaaaa</div>
+              </div>
+            </div>
+          `
+        }},
+        { path: '/friends', component: {
+          template: `
+            <div class="friends">
+              <div class="friend">
+                <img src="3.png">Mike
+              </div>
+              <div class="friend">
+                <img src="3.png">Van
+              </div>
+            </div>
+          `
+        }},
+        { path: '/findout', component: {
+          template: `
+            <div class="findouts">
+              <router-link to="circle">
+                <div class="comp">
+                  <img src="2.png" style="height: 100%;">朋友圈
+                </div>
+              </router-link>
+            </div>
+          
+          `
+        }}
+      ]
+    })
+
+    new Vue({
+      el: '#app',
+      router
+    })
+  </script>
+</body>
+</html>

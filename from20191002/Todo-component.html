@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo</title>
+  <style>
+    .complete {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <todo-app></todo-app>
+
+  </div>
+  
+
+  <script src="https://unpkg.com/vue"></script>
+
+  <script>
+    Vue.component('todo-app', {
+      template: `
+        <div class="todo-app">
+          <todo-input @newinput="newinput" @toggleall="toggleall" :todos="todos"></todo-input>
+          <todo-list @deletetodo="deletetodo" :todos="todos" :category="category"></todo-list>
+          <todo-footer @clear="clear" @showall="showall" @showactive="showactive" @showcomplete = "showcomplete" :todos="todos" :category="category"></todo-footer>
+        </div>
+      `,
+      data() {
+        return {
+          category: 'all',
+          todos: [
+            {name: 'drink', done: false},
+            {name: 'sleep', done: false},
+            {name: 'eat', done: true}
+          ]
+        }
+      },
+      methods: {
+        clear() {
+          console.log(1)
+          this.todos = this.todos.filter(it => !it.done)
+        },
+        deletetodo(todo) {
+          this.todos = this.todos.filter(it => it != todo)
+        },
+        toggleall() {
+          if (this.todos.every(it => it.done)) {
+            this.todos.forEach(it => it.done = false)
+          } else {
+            this.todos.forEach(it => it.done = true)
+          }
+        },
+        newinput(value) {
+          if (value) {
+            this.todos.push({name: value, done: false})
+          }
+        },
+        showall() {
+          this.category = "all"
+        },
+        showactive() {
+          this.category = "active"
+        },
+        showcomplete() {
+          this.category = "complete"
+        }
+      }
+    })
+
+    Vue.component('todo-input', {
+      props: ['todos'],
+      template: `
+        <div class="todo-input">
+          <input type="checkbox" :checked="todos.every(it => it.done)" @click="$emit('toggleall')">
+          <input type="text" @keyup.enter="eventinput">
+        </div>
+      `,
+      methods: {
+        eventinput(e) {
+          this.$emit('newinput', e.target.value)
+          e.target.value = ''
+        }
+      }
+    })
+
+    Vue.component('todo-list', {
+      props: ['todos', 'category'],
+      template: `
+        <ul class="todo-list">
+          <todo-item @deletetodo="$emit('deletetodo', todo)" v-for="(todo, idx) in getShowing" :key="idx" :todo="todo" :class="todo.done ? 'complete' : 'active'"></todo-item>
+        </ul>
+      `,
+      computed: {
+        getShowing() {
+          if (this.category == 'all') {
+            return this.todos
+          }
+          if (this.category == 'active') {
+            return this.todos.filter(it => !it.done)
+          }
+          if (this.category == 'complete') {
+            return this.todos.filter(it => it.done)
+          }
+        }
+      }
+    })
+
+    Vue.component('todo-item', {
+      props: ['todo'],
+      template: `
+        <li>
+          <input type="checkbox" :checked="todo.done" @click="todo.done = !todo.done">
+          <span>{{todo.name}}</span>
+          <button @click="$emit('deletetodo')">delete</button>
+        </li>
+      `
+    })
+
+    Vue.component('todo-footer', {
+      props: ['todos', 'category'],
+      template: `
+        <div class="todo-footer">
+          <todo-count :todos="todos"></todo-count>
+          <todo-case-switch :category="category" @showall="$emit('showall')" @showactive="$emit('showactive')" @showcomplete="$emit('showcomplete')"></todo-case-switch>
+          <todo-clear :todos="todos" @clear="$emit('clear')"></todo-clear>
+        </div>
+      `
+    })
+
+    Vue.component('todo-count', {
+      props: ['todos'],
+      template: `
+        <span>{{ length }} item{{length > 1 ? "s" : ""}} left</span>
+      `,
+      computed: {
+        length() {
+          return this.todos.filter(it => !it.done).length
+        }
+      }
+    })
+
+    Vue.component('todo-case-switch', {
+      props: ['category'],
+      template: `
+        <span>
+          <label><input type="radio" :checked="category == 'all'" @click="$emit('showall')">All</label>
+          <label><input type="radio" :checked="category == 'active'" @click="$emit('showactive')">Active</label>
+          <label><input type="radio" :checked="category == 'complete'" @click="$emit('showcomplete')">Complete</label>
+        </span>
+      `
+    })
+
+    Vue.component('todo-clear', {
+      props: ['todos'],
+      template: `
+        <button v-show="todos.filter(it => it.done).length" @click="$emit('clear')">Clear Completed</button>
+      `,
+    })
+  
+    var app = new Vue({
+      el: '#app'
+    })
+
+  </script>
+</body>
+</html>

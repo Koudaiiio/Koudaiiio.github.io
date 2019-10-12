@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>spread</title>
+
+  <style>
+    body {
+      font-family: consolas;
+    }
+
+    .number {
+      color: red;
+    }
+
+    .string {
+      color: brown;
+    }
+
+    .boolean {
+      color: blue;
+    }
+
+    .toggle {
+      cursor: pointer;
+    }
+
+    .key {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="spread">
+    <json :value="data"></json>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script type="text/x-template" id="spread-template">
+    
+    <span v-if=" typeof value == 'number' " class="number">{{ value }}</span>
+
+    <span v-else-if=" typeof value == 'string' " class="string">"{{ value }}"</span>
+
+    <span v-else-if=" value === null ">null</span>
+
+    <span v-else-if=" typeof value == 'boolean' " class="boolean">{{value}}</span>
+
+    <span v-else-if=" Array.isArray(value) "><span class="toggle" @click="show = !show">{{ show ? "-" : "+" }}</span> [
+      <div v-show="show" style="margin-left: 1em;">
+        <div v-for="(item, idx) of value"><json :value="item"></json><span v-if="idx < length - 1">,</span></div>
+      </div>
+      <span v-show="!show">...</span>
+    ]</span>
+
+    <span v-else-if=" typeof value == 'object' "><span class="toggle" @click="show = !show">{{ show ? "-" : "+" }}</span> {
+      <div v-show="show" style="margin-left: 1em;" v-for="(val, key, idx) in value">
+        <span class="key">{{key}}</span>: <json :value="val"></json><span v-if="idx < length - 1">,</span>
+      </div>
+      <span v-show="!show">...</span>
+    }</span>
+  </script>
+
+  <script>
+    Vue.component('json', {
+      props: {
+        value: ''
+      },
+      template: '#spread-template',
+      watch: {
+        value() {
+          this.length = this.value && Object.keys(this.value).length
+        }
+      },
+      data() {
+        return {
+          show: false,
+          length: this.value && Object.keys(this.value).length
+        }
+      }
+    })
+
+    var app = new Vue({
+      el: '#spread',
+      data() {
+        return {
+          data3: 'fio',
+          data2: [1,2,3,4,5],
+          data: {
+            a: 1,
+            b: [2,3,54,6,7,87],
+            c: [
+              1,2,{
+                x:3,
+                y:4
+              }
+            ],
+            d: "foobar",
+            e: true,
+            f: null,
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

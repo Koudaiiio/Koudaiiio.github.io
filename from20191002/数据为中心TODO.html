@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO</title>
+  <style>
+    .complete {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="todo-app">
+    <div>
+      <input type="checkbox" @click="toggleAll" :checked="todos.every(it => it.done)">
+      <input type="text" @keyup="addTodo">
+    </div>
+    <ul>
+      <li v-for="(todo, index) in getShowing()" :class=" todo.done ? 'complete' : 'active'">
+        <input type="checkbox" v-bind:checked="todo.done" @click="todo.done = !todo.done">
+        <span onselectstart="return false;" @dblclick="edit($event, todo, index)" v-if="editingIndex != index">{{todo.content}}</span>
+        <input @keyup="cancelEdit" @blur="changeTodo($event, todo)" @keyup.enter="changeTodo($event, todo)" v-if="editingIndex == index" :value="todo.content" type="text" v-focus>
+        <button @click="deleteTodo(todo)">delete</button>
+      </li>
+    </ul>
+    <div>
+      <span>{{todos.filter(it => !it.done).length}} item{{todos.filter(it => !it.done).length > 1 ? "s" : ""}} left</span>
+      <span>
+        <label><input type="radio" :checked=" category == 'all'" @click="category = 'all'"> All</label>
+        <label><input type="radio" :checked=" category == 'active'" @click="category = 'active'"> Active</label>
+        <label><input type="radio" :checked=" category == 'completed'" @click="category = 'completed'"> Completed</label>
+      </span>
+      <button v-show="todos.filter(it => it.done).length" @click="todos = todos.filter(it => !it.done)">Clear Complete</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    Vue.directive('focus', {
+      inserted(el) {
+        el.focus()
+      }
+    })
+
+    var app = new Vue({
+      el: '#todo-app',
+      data: {
+        editingIndex: -1,
+        category: 'all',
+        todos: [{
+          content: 'eat',
+          done: false,
+        }, {
+          content: 'drink',
+          done: true,
+        }, {
+          content: 'sleep',
+          done: true
+        }]
+      },
+      computed: {
+
+      },
+      methods: {
+        deleteTodo(todo) {
+          this.todos = this.todos.filter(it => it != todo)
+        },
+        getShowing() {
+          if (this.category == 'all') {
+            return this.todos
+          } else if (this.category == 'active') {
+            return this.todos.filter(it => !it.done)
+          } else if (this.category == 'completed')  {
+            return this.todos.filter(it => it.done)
+          }
+        },
+        cancelEdit(e) {
+          if (e.keyCode == 27) {
+            this.editingIndex = -1
+          }
+        },
+        addTodo(e) {
+          var text = e.target.value.trim()
+          if (text && e.keyCode == 13) {
+            this.todos.push({
+              content: text,
+              done: false
+            })
+            e.target.value = ''
+          }
+        },
+        toggleAll(e) {
+          if (this.todos.every(it => it.done)) {
+            this.todos.forEach(it => it.done = false)
+          } else {
+            this.todos.forEach(it => it.done = true)
+          }
+        },
+        changeTodo(e, todo) {
+          // e.stopPropagation()
+          if (this.editingIndex == -1) {
+            return
+          }
+          todo.content = e.target.value.trim()
+          this.editingIndex = -1
+        },
+        edit(e, todo, index) {
+          this.editingIndex = index
+          // debugger;
+          var input = e.target.parentNode.children[1]
+          input.selectionStart = input.selectionEnd = todo.content.length
+        }
+      }
+    })
+  </script>
+</body>
+</html>

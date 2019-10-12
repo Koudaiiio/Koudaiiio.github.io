@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="regexdemo">
+
+  </div>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    Vue.component('regex',{
+      props: {
+        value: {
+          table: RegExp,
+          required: true,
+        }
+      },
+      template: `
+        <span style="border: 2px solid;">
+          <input type="text" :value="reText" @change="reTextChange">
+        </span>
+      `,
+      methods: {
+        reTextChange(e) {
+          var re = new RegExp(e.target.value)
+          this.$emit
+        }
+      },
+      watch: {
+        value(val) {
+          this.reText = val.source
+        }
+      },
+      data() {
+        return {
+          string: 'asdf'
+        }
+      }
+    })
+
+
+
+  </script>
+</body>
+</html>

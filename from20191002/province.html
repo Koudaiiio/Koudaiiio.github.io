@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div id="selection">
+    <select v-model="province">
+      <option value="" v-for="prop of all" :value="prop">{{prop.name}}</option>
+    </select>
+
+    <select v-model="city">
+      <option value="" v-for="c of province && province.child" :value="c">{{c.name}}</option>
+    </select>
+
+    <select v-model="area">
+      <option value="" v-for="a of city && city.child" :value="a">{{a.name}}</option>
+    </select>
+
+    <hr>
+    <select name="" id="" v-model="province">
+      <option disabled value="">选择省份</option>
+      <option v-for="prov in all">{{prov.name}}</option>
+    </select>
+
+    <select v-model="city">
+      <option disabled>选择城市</option>
+      <option v-for="c in getcities()">{{c.name}}</option>
+    </select>
+
+    <select v-model="area">
+      <option disabled>选择地区</option>
+      <option v-for="a in getareas()">{{a.name}}</option>
+    </select>
+  </div>
+
+  <div id="components-demo">
+    <button-counter @change="print" v-for="(c,index) in counters" :key="index" :nums="c.nums" :step="c.step"></button-counter>
+    <hr>
+    <button-counter :nums="15" :step="2"></button-counter>
+    <button-counter></button-counter>
+  </div>
+
+  <div id="blog">
+    <blog-post title="aaaa" nums="123"></blog-post>
+    <blog-post title="bbbb" nums="456"></blog-post>
+    <blog-post title="cccc" nums="789"></blog-post>
+  </div>
+
+  <div contenteditable="true">asdfasdf</div>
+
+  <div id="cap">
+    <captcha-input></captcha-input>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="china-city-area-zip.js"></script>
+
+  <script>
+    Vue.component('button-counter', {
+      props: {
+        nums: {
+          default: 0
+        },
+        step: {
+          default: 1
+        }
+      },
+      // props: ['nums', 'step'],
+      template: `
+        <span>
+          <button @click="dec">-</button>
+          <span>{{ count }}</span>
+          <button @click="inc">+</button>
+        </span>
+      `,
+      data() {
+        return {
+          count: this.nums
+        }
+      },
+      methods: {
+        dec() {
+          this.count -= this.step
+          this.$emit('change', this.count)
+        },
+        inc() {
+          this.count += this.step
+          this.$emit('change', this.count)
+        }
+      }
+    })
+
+    Vue.component('captcha-input', {
+      template: `
+        <span>
+          <input 
+            style="width: 1em; text-align: center" 
+            type="text" 
+            @keyup="keyup" 
+            v-for="(char, i) of chars"
+            v-model="chars[i]"
+          />
+        </span>
+      `,
+      data() {
+        return {
+          chars: [ , , , , , , ]
+        }
+      },
+      methods: {
+        keyup: function(e) {
+          e.preventDefault()
+          if (e.key == 'Backspace') {
+            var prev = e.target.previousElementSibling
+            var next = e.target.nextElementSibling
+            
+            if (!next) {
+              if (e.target.value.trim()) {
+                e.target.value = ''
+                return
+              }
+              prev.value = ''
+              prev.focus()
+              return
+            }
+
+          }
+          if (e.target.value.trim().length) {
+            if (e.target.nextElementSibling) {
+              e.target.nextElementSibling.focus()
+            } else {
+              this.$emit('input-complete', )
+            }
+          }
+        }
+      }
+    })
+
+    Vue.component('blog-post', {
+      props:['title', 'nums'],
+      template: '<h3 v-bind:title="true">{{ title }} {{ nums }}</h3>'
+    })
+
+    new Vue({
+      el: '#cap'
+    })
+
+    new Vue({
+      el: '#blog'
+    })
+
+    new Vue({
+      el: '#components-demo',
+      data() {
+        return {
+          a: 1,
+          counters: [{
+            nums: 50, step: 4
+          },{
+            nums: -10, step:22
+          },{
+            nums: 33, step: -1
+          }]
+        }
+      },
+      methods: {
+        print(num) {
+          console.log(num)
+        }
+      }
+    })
+
+
+    var app = new Vue({
+      el: '#selection',
+      data: {
+        all: china_city_area_zip,
+        province: '',
+        city: '',
+        area: ''
+      },
+      beforeCreate() {
+        console.log(Date.now())//用于统计将data内数据转成getter、setter的事件
+      },
+      created() {
+        console.log(Date.now())//用于统计将data内数据转成getter、setter的事件
+      },
+      methods: {
+        getcities() {
+          var p = this.all.find(it => it.name == this.province)
+          if (p) {
+            return p
+          }
+          for (var i of this.all) {
+            if (i.name == this.province) {
+                return i.child
+            }
+          }
+        },
+        getareas() {
+          for (var i of this.all) {
+            if (i.name == this.province) {
+              for (var j of i.child) {
+                if (j.name == this.city) {
+                  return j.child
+                }
+              }
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
