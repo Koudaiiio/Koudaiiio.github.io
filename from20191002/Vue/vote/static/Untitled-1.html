@@ -1,0 +1,56 @@
+  <body>
+    <div id="app">
+    </div>
+
+    <a-radio-group name="radioGroup" :defaultValue="1">
+      <div><a-radio :value="1">A</a-radio></div>
+        
+        <a-radio :value="2">B</a-radio>
+        <a-radio :value="3">C</a-radio>
+        <a-radio :value="4">D</a-radio>
+      </a-radio-group>
+    
+  <script src="./assets/vue.js"></script>
+  <script src="./assets/vuex.js"></script>
+  <script src="./assets/vue-router.js"></script>
+  <script src="./assets/lodash.min.js"></script>
+  <script src="./assets/axios.min.js"></script>
+  <script src="./assets/socket.io.js"></script>
+  <script src="./assets/moment.js"></script>
+  <script src="./assets/antd.min.js"></script>
+
+<script>
+  var app = new Vue({
+    template: `
+
+    <a-radio-group  v-model="radioData">
+      
+        <div><a-radio :value="0">A</a-radio></div>
+            <a-radio :value="1">B</a-radio>
+            <a-radio :value="2">C</a-radio>
+            <a-radio :value="3">D</a-radio>
+          </a-radio-group>
+    `,
+    data(){
+      return {
+        radioData:1
+      }
+    },
+    methods:{
+      a(){
+       
+        setInterval(()=>{
+          console.log(1)
+          this.radioData = Math.floor(Math.random()*4)
+        },1000)
+      }
+    },
+    mounted(){
+      this.a()
+    },
+    el: '#app',
+  })
+
+</script>
+    
+  </body>

@@ -4,7 +4,7 @@ const http = require('http')
 const cookieParser = require('cookie-parser')
 const sqlite = require('sqlite')
 const multer = require('multer')
-const url = requrie('url')
+const url = require('url')
 
 const app = express()
 const server = http.createServer(app)

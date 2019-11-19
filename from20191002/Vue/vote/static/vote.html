@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vote</title>
+  <style>
+  </style>
+</head>
+<body>
+  <div id="app">
+    <router-view></router-view>
+    <div :class="{red: isRed}"></div>
+  </div>
+
+  <script src="assets/vue.js"></script>
+  <script src="assets/vue-router.js"></script>
+  <script src="assets/axios.min.js"></script>
+
+  <script>
+    let Index = {
+      template: `
+        <div v-if="isSignedin">
+          <div class="nav">
+            欢迎 {{ this.userInfo.name }}
+          </div>
+          <div class="main">
+            <button>创建投票</button>
+            <button>我的投票</button>
+          </div>
+        </div>
+        <div v-else>
+          <div>用户名: <input type="text" v-model="userInfo.name"></div>
+          <div>密码: <input type="text" v-model="userInfo.password"></div>
+          <router-link to="/forgot">忘记密码？</router-link>
+          <div><button @click="signin">登陆</button></div>
+          <div>
+            还未拥有账号？<router-link to="/register">点击注册</router-link>
+          </div>
+        </div>
+      `,
+      data() {
+        return {
+          isSignedin: false,
+          userInfo: {
+            name: '',
+            password: ''
+          }
+        }
+      },
+      methods: {
+        async signin() {
+          var data = axios.post('/signin', this.userInfo)
+        }
+      },
+
+      async mounted() {
+        try {
+          var response = await api.get('/userinfo')
+          this.user = response.data
+        } catch(e) {
+          return
+        }
+      }
+    }
+
+    let Register = {
+      template: `
+        <div>
+          <div>用户名: <input v-model="userInfo.name"><span v-if="isRegistered" style="color: red;">用户名已被注册！</span></div>
+          <div>邮箱: <input v-model="userInfo.email"></div>
+          <div>密码: <input v-model="userInfo.password"></div>
+          <button @click="submit">提交</button>
+        </div>
+      `,
+      data() {
+        return {
+          isRegistered: true,
+          userInfo: {
+            name: '',
+            email: '',
+            password: ''
+          }
+        }
+      },
+      methods: {
+        submit() {
+          var data = axios.post('/register', this.userInfo)
+        }
+      }
+    }
+
+    let Forgot = {
+      template: `
+        <div>
+          输入您的注册邮箱: <input v-model="email">
+          <button @click="submit">确定</button>
+        </div>
+      `,
+      data() {
+        return {
+          email: ''
+        }
+      },
+      methods: {
+        async submit() {
+          var data = axios.post('/forgot', this.email)
+        }
+      }
+    }
+
+
+    let api = axios.create({
+      baseURL: '/api/'
+    })
+
+
+
+    var router = new VueRouter({
+      routes: [{
+        path: '/',
+        alias: '/index',
+        component: Index,
+      }, {
+        path: '/register',
+        component: Register
+      }, {
+        path: '/forgot',
+        component: Forgot
+      }]
+    })
+
+    var app = new Vue({
+      el: '#app',
+      router
+    })
+  
+  </script>
+</body>
+</html>

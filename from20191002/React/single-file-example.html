@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+      class Counter extends React.Component /* 基类 */{
+        constructor(props) {
+          super(props)
+
+          this.state = {
+            count: 0,
+            age: 8,
+            obj:{
+              x: 1,
+              y: 2
+            }
+          }
+        }
+
+        dec = () => {
+          this.setState({
+            count: this.state.count - 1
+          })
+        }
+
+        inc = () => {
+          this.setState({
+            count: this.state.count + 1
+          })
+        }
+
+        render() {
+          console.log('render')
+          return (
+            <div>
+              <button onClick={this.dec}>-</button>
+              <span>{ this.state.count }</span>
+              <button onClick={this.inc}>+</button>
+            </div>
+          )
+        }
+      }
+
+      class TodoApp extends React.Component {
+        constructor(props) {
+          super(props)
+
+          this.state = {
+            showing: 'all',
+            todos: [{
+              content: 'eat',
+              done: true,
+            }, {
+              content: 'sleep',
+              done: false
+            }, {
+              content: 'drink',
+              done: false
+            }]
+
+          }
+        }
+
+        leftCount () {
+          return this.state.todos.filter(it => !it.done).length
+        }
+
+        isAllSelected () {
+          // debugger;
+          return this.state.todos.every(it => it.done)
+        }
+
+        toggleTodoStatus = (todo) => {
+          // todo.done = !todo.done
+
+          // this.forceUpdate()
+
+          this.setState({
+            todos: this.state.todos.map(it => {
+              if (it == todo) {
+                return {
+                  ...it,
+                  done: !it.done
+                }
+
+              } else {
+                return it
+              }
+            })
+          })
+        }
+
+        toggleAllSelections = () => {
+          if (this.isAllSelected()) {
+            this.setState({
+              todos: this.state.todos.map(it => {
+                return {
+                  content: it.content,
+                  done: false
+                }
+              })
+            })
+          } else {
+            this.setState({
+              todos: this.state.todos.map(it => {
+                return {
+                  content: it.content,
+                  done: true
+                }
+              })
+            })
+          }
+        }
+
+        hasCompleted () {
+          return this.state.todos.some(it => it.done)
+        }
+
+        deleteTodo (todo) {
+          this.setState({
+            todos: this.state.todos.filter(it => it != todo)
+          })
+        }
+
+        clearCompleted = () => {
+          this.setState({
+            todos: this.state.todos.filter(it => !it.done)
+          })
+        }
+
+        addTodo () {
+          if (event.key == 'Enter' && event.target.value.trim() != '') {
+            let newTodo = {
+              content: event.target.value,
+              done: false
+            }
+            this.setState({
+              todos: this.state.todos.concat(newTodo)
+            })
+            event.target.value = ''
+          }
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>Todos</h1>
+              <div>
+                <input type="checkbox" checked={this.isAllSelected()} onChange={this.toggleAllSelections} />
+                <input type="text" onKeyUp={() => this.addTodo()}/>
+              </div>
+              <ul>
+                {
+                  this.state.todos.map((todo, idx) => {
+                    return (
+                      <li key={idx}>
+                        <input type="checkbox" checked={todo.done} onChange={() => this.toggleTodoStatus(todo)}/>
+                        <span>{ todo.content }</span>
+                        <button onClick={() => this.deleteTodo(todo)}>x</button>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+              <div>
+                <span>{this.leftCount()} item{this.leftCount() > 1 ? 's' : ''} left</span>
+                <span>
+                  <input type="radio" checked={this.state.showing == 'all'} onChange={() => toggleStatus()}/>All
+                  <input type="radio" checked={this.state.showing == 'active'} onChange={() => toggleStatus()}/>Active
+                  <input type="radio" checked={this.state.showing == 'completed'} onChange={() => toggleStatus()}/>Complete
+                </span>
+                {this.hasCompleted() &&
+                  <button onClick={this.clearCompleted}>Clear Completd</button>
+                }
+              </div>
+            </div>
+          )
+        }
+      }
+
+      class Clock extends React.Component {
+        constructor(props) {
+          super(props)
+
+          this.state = {
+            date: new Date()
+          }
+        }
+
+        tick() {
+          this.setState({
+            date: new Date()
+          })
+        }
+
+        componentDidMount() {
+          this.timerID = setInterval(() => {
+            this.tick()
+          }, 1000);
+        }
+
+        componentWillUnmount() {
+          clearInterval(this.timerID)
+        }
+
+        render() {
+          return (
+            <div>
+              <div>
+                <h1>Hello, world!</h1>
+                <h2>It is {this.state.date.toLocaleTimeString()}</h2>
+              </div>  
+            </div>
+          )
+        }
+      }
+
+      
+
+      
+
+      var a = React.createElement(Counter)
+
+      function Welcome(props) {
+        return <p>Welcome, {props.name}!</p>
+      }
+
+      ReactDOM.render(
+        <div>
+          <Clock />
+          <Welcome name="foo" />
+          <TodoApp />
+          <h1>asdasddasd</h1>
+        </div>,
+        document.getElementById('root')
+      );
+
+    </script>
+
+    
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

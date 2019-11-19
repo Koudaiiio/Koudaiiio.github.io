@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body>
+
+  <input class='asterisk' type="text">
+  <div>asdf</div>
+
+  <input type="password">
+
+  <ul>
+      <li>Hello</li>
+      <li>Hello</li>
+      <li>Hello</li>
+  </ul>
+  
+  <script type="text/javascript" src="https://unpkg.com/jquery@3.4.1/dist/jquery.js" ></script>
+  <script>
+    var str = ''
+    $('.asterisk').on('keydown keyup', (function() {
+      var value = $(this).val()
+      str += value.substr(-1, 1)
+      $(this).val(value.replace(/./g, '*'))
+      console.log(1)
+      $('div').text(str)
+    }))
+
+    $('ul li:last').addClass(function() {
+      return 'item-' + $(this).index();
+    });
+  </script>
+</body>
+</html>
