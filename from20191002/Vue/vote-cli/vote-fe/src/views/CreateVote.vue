@@ -96,7 +96,6 @@
 
 <script>
 import api from '../api.js'
-import moment from 'moment'
 export default {
   data() {
     return {
@@ -112,6 +111,10 @@ export default {
   },
   methods: {
     async submit() {
+      if (this.voteInfo.deadline.length == 0) {
+        alert('请选择截止日期！')
+        return
+      }
       //debugger;
       try {
         var response = await api.post('/vote', this.voteInfo)
@@ -121,10 +124,10 @@ export default {
         alert('请先登录！')
         this.$router.push('/')
       }
-    },
+    }, 
     disabledDate(current) {
     // Can not select days before today and today
-      return current && current < moment().endOf('day');
+      return current && current < Date.now()
     },
     getDeadline(time) {
       this.voteInfo.deadline = time._d

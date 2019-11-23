@@ -51,7 +51,7 @@
       background-color: rgba(255, 255, 255, 0.781);
     }
 
-    .uploadAvatar:hover::before {
+    .uploadAvatar:hover::before { 
       opacity: 1;
     }
 
@@ -75,7 +75,7 @@
       box-shadow: 0 0 3px black;
       background-color: #fff3;
       margin: auto;
-      margin-top: 20%;
+      margin-top: 20vh;
       overflow: hidden;
       position: relative;
     }

@@ -3,13 +3,18 @@ const multer = require('multer')
 const md5 = require('md5')
 const express = require('express')
 const sharp = require('sharp')
-const svgCaptcha = require('svg-captcha')
 const fsp = fs.promises
 
-const uploader = multer({
-  dest: './upload/',
-  preservePath: true,
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './upload/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
 })
+
+const uploader = multer({ storage: storage })
 
 let db
 (async () => {
@@ -34,7 +39,7 @@ app.route('/register')
         await fsp.unlink(req.file.path)
       }
 
-      res.status(401).json({
+      res.status(403).json({
         code: -1,
         msg: '用户名已被占用'
       })
@@ -45,8 +50,8 @@ app.route('/register')
           .resize(256)
           .toFile(req.file.path)
       }
-
-      await db.run('INSERT INTO users (name, email, password, avatar) VALUES (?,?,?,?)', regInfo.name, regInfo.email, regInfo.password, req.file ? req.file.path : null)
+      var file = req.file ? 'upload/' + req.file.filename : null
+      await db.run('INSERT INTO users (name, email, password, avatar) VALUES (?,?,?,?)', regInfo.name, regInfo.email, regInfo.password, file)
 
       var newuser = await db.get('SELECT * FROM users WHERE name=?', regInfo.name)
 
@@ -60,17 +65,6 @@ app.route('/register')
       })
     }
   })
-
-app.get('/captcha', (req, res, next) => {
-  var captcha = svgCaptcha.create({
-    ignoreChars: '0o1il'
-  })
-  res.type('svg')
-  console.log(captcha.text)
-  req.session.captcha = captcha.text
-
-  res.end(captcha.data)
-})
 
 app.get('/userinfo', async (req, res, next) => {
   var userid = req.signedCookies.userid
@@ -86,10 +80,10 @@ app.route('/login')
     var tryLoginInfo = req.body
     // console.log(tryLoginInfo)
 
-    // if (tryLoginInfo.captcha != req.session.captcha) {
-    //   res.json({code: -1, msg: '验证码错误'})
-    //   return 
-    // }
+    if (tryLoginInfo.captcha != req.session.captcha) {
+      res.json({code: -1, msg: '验证码错误'})
+      return 
+    }
     var user = await db.get('SELECT id,name,avatar FROM users WHERE name=? AND password=?', tryLoginInfo.name, tryLoginInfo.password)
     if (user) {
       res.cookie('userid', user.id, {
@@ -124,7 +118,7 @@ app.route('/forgot')
       delete changePasswordTokenMap[token]
     }, 60 * 1000 * 20)//20分钟后删除token
 
-    var link = `http://localhost:4002/change-password/${token}`
+    var link = `https://www.cyluck.club/change-password/${token}`
 
     // console.log(link)
 
@@ -180,5 +174,23 @@ app.get('/logout', (req, res, next) => {
   res.clearCookie('userid')
   res.end()
 })
+
+app.route('/change-avatar')
+  .post(uploader.single('avatar'), async (req, res, next) => {
+    var userInfo = await db.get('SELECT * FROM users WHERE id=?', req.signedCookies.userid)
+
+    // if (userInfo.avatar && typeof userInfo.avatar == 'string') {
+    //   await fsp.unlink(__dirname + '/' + userInfo.avatar)
+    // }
+    var imgBuf = await fsp.readFile(req.file.path)
+    await sharp(imgBuf)//把上传的图片变小
+      .resize(256)
+      .toFile(req.file.path)
+    var file = req.file ? 'upload/' + req.file.filename : null
+    await db.run('UPDATE users SET avatar=? WHERE id=?', file, req.signedCookies.userid)
+    var ava = await db.get('SELECT avatar FROM users WHERE id=?', userInfo.id)
+    res.json(ava)
+  }
+)
 
 module.exports = app

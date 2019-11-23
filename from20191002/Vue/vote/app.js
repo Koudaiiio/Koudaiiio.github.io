@@ -1,15 +1,23 @@
 
 const express = require('express')
-const http = require('http')
+const https = require('https')
 const cookieParser = require('cookie-parser')
 const socketIO = require('socket.io')
 const cors = require('cors')
 const session = require('express-session')
+const fs = require('fs')
+const svgCaptcha = require('svg-captcha')
+// const http = require('http')
 
 const app = express()
-const server = http.createServer(app)
+const server = https.createServer({
+  key: fs.readFileSync('/root/.acme.sh/www.cyluck.club/www.cyluck.club.key'),
+  cert: fs.readFileSync('/root/.acme.sh/www.cyluck.club/www.cyluck.club.cer')
+}, app)
 
-const port = 4001
+// const server = http.createServer(app)
+
+const port = 443
 
 
 app.use(express.static(__dirname + '/static'))
@@ -52,6 +60,18 @@ const voteRouter = require('./vote-router')
 
 app.use('/api', userAccount)
 app.use('/api', voteRouter)
+
+app.get('/captcha', (req, res, next) => {
+  var captcha = svgCaptcha.create({
+    ignoreChars: '0o1il'
+  })
+  res.type('svg')
+  console.log(captcha.text)
+  req.session.captcha = captcha.text
+
+  res.end(captcha.data)
+})
+
 
 
 // app.get('/', async(req, res, next) => {

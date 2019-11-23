@@ -56,7 +56,7 @@ app.post('/voteup', async (req, res, next) => {
 
   if (Date.now() > voteInfo.deadline) {
     res.status(403).json({
-      code: -1,
+      code: -2,
       msg: '当前投票已截止'
     })
     return

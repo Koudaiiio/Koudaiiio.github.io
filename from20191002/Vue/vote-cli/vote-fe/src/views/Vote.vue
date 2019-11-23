@@ -2,7 +2,7 @@
   <div v-if="Object.keys(vote.info).length">
     <div class="votePage">
       <div class="voteCenter">
-        <div class="avatar"><a-avatar :size="88" style="boxShadow: 0 0 3px black;" :src="'http://localhost:4001/' + vote.info.avatar" /> <span class="userInfo"><strong>{{ vote.info.name }}</strong>  发起的投票</span></div>
+        <div class="avatar"><a-avatar :size="88" style="boxShadow: 0 0 3px black;" :src="vote.info.avatar" /> <span class="userInfo"><strong>{{ vote.info.name }}</strong>  发起的投票</span></div>
         <div class="deadline">投票截止日期: {{ vote.info.deadline }}</div>
         <strong class="title">{{ vote.info.title }}</strong>
         
@@ -109,7 +109,10 @@
 <script>
 import io from 'socket.io-client'
 import api from '../api.js'
-import _ from 'lodash'
+import mapValues from 'lodash/mapValues'
+import uniqBy from 'lodash/uniqBy'
+import keyBy from 'lodash/keyBy'
+import groupBy from 'lodash/groupBy'
 export default {
   data() {
     return {
@@ -135,12 +138,12 @@ export default {
       var request = await api.get('/vote/' + id)
       var data = request.data
 
-      data.info.avatar = data.info.avatar ? data.info.avatar : '/default.jpg'
+      data.info.avatar = data.info.avatar ? data.info.avatar : '../assets/default.jpg'
       
       data.info.deadline = new Date(data.info.deadline).toLocaleString()
       this.vote = data
       
-      this.vote.voteups = _.uniqBy(this.vote.voteups, 'userid')
+      this.vote.voteups = uniqBy(this.vote.voteups, 'userid')
       
       // debugger;
       var ary = this.vote.voteups.filter(it => {
@@ -151,7 +154,7 @@ export default {
         this.voteid = ary[0].optionid
       }
 
-      this.socket = io('http://localhost:4001/')
+      this.socket = io('/')
       this.socket.emit('select room', id)
 
       this.socket.on('new vote', data => {
@@ -168,8 +171,10 @@ export default {
           voteid: this.vote.info.id
         })
       } catch(e) {
-        alert('请先登录！')
-        this.$router.push('/')
+        alert(e.response.data.msg)
+        if (e.response.data.code == -1) {
+          this.$router.push('/')
+        }
       }
     },
     back() {
@@ -178,19 +183,19 @@ export default {
   },
   computed: {
     summary() {
-      var obj = _.mapValues(_.keyBy(this.vote.options, 'id'), () => [])
+      var obj = mapValues(keyBy(this.vote.options, 'id'), () => [])
 
       return {
         ...obj,
-        ..._.groupBy(this.vote.voteups, 'optionid')
+        ...groupBy(this.vote.voteups, 'optionid')
       }
     },
     ratioSummary() {
-      return _.mapValues(this.summary, (voteups) => {
+      return mapValues(this.summary, (voteups) => {
         if (voteups.length == 0) {
           return 0
         }
-        return voteups.length / this.vote.voteups.length
+        return Math.ceil((voteups.length / this.vote.voteups.length) * 1000) / 1000
       })
     }
   }

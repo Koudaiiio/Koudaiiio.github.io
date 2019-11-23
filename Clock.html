@@ -36,6 +36,12 @@
       position: absolute;
     }
 
+    div.degree {
+      height: 2px;
+      width: 8px;
+      background-color: gray;
+    }
+
     span {
       width: 30px;
       height: 30px;
@@ -51,36 +57,48 @@
       border-radius: 50% 50% 0 0;
       transform: translatey(-45%);
       transform-origin: 50% 95%;
-      animation: rotate 86400s infinite;
+      animation: hour-rotate 43200s linear infinite;
     }
 
     .minute div {
-      height: 190px;
+      height: 230px;
       width: 6px;
       background-color: #D75555;
       border-radius: 50% 50% 0 0;
       transform: translatey(-40%);
       transform-origin: 50% 90%;
-      animation: rotate 3600s infinite;
+      animation: minute-rotate 3600s linear infinite;
     }
 
     .second div {
-      height: 240px;
+      height: 270px;
       width: 4px;
       background-color: orange;
       border-radius: 50% 50% 0 0;
-      transform: translatey(-30%);
-      transform-origin: 50% 80%;
-      animation: rotate 60s steps(60) infinite;
+      transform: translatey(-35%);
+      transform-origin: 50% 85%;
+      animation: second-rotate 60s steps(60) infinite;
     }
 
     .second {
       animation: swing 1s ease-out infinite;
     }
 
-    @keyframes rotate {
+    @keyframes second-rotate {
       to {
-        transform: translatey(-30%) rotate(360deg);
+        transform: translatey(-35%) rotate(360deg);
+      }
+    }
+
+    @keyframes minute-rotate {
+      to {
+        transform: translatey(-40%) rotate(360deg);
+      }
+    }
+
+    @keyframes hour-rotate {
+      to {
+        transform: translatey(-45%) rotate(360deg);
       }
     }
 
@@ -153,6 +171,8 @@
 <body>
   <section>
     <main>
+      <div class="degree" style="transform: rotate(-90deg) translate(242px)"></div>
+      <span>12</span>
       <span>1</span>
       <span>2</span>
       <span>3</span>
@@ -164,12 +184,37 @@
       <span>9</span>
       <span>10</span>
       <span>11</span>
-      <span>12</span>
       <div class="hour"><div></div></div>
       <div class="minute"><div></div></div>
       <div class="second"><div></div></div>
       <div class="circle"></div>
     </main>
   </section>
+
+  <script>
+    let hour = document.querySelector('.hour').children[0]
+    let minute = document.querySelector('.minute').children[0]
+    let second = document.querySelector('.second')
+    let time = Date.now() / 1000 % 86400
+    console.log(time)
+    hour.style.animationDelay = -(time - 3600 * 4) + 's'
+    minute.style.animationDelay = -time + 's'
+    second.children[0].style.animationDelay = -time + 's'
+    second.style.animationDelay = -time + 's'
+
+    let main = document.querySelector('main')
+
+    for (var i = 0; i < 60; i++) {
+      let div = document.createElement('div')
+      div.className = "degree"
+      if (i % 5 == 0) {
+        div.style.width = 14 + 'px'
+        div.style.transform = `rotate(${-90 + i * 6}deg) translate(243px)`
+      } else {
+        div.style.transform = `rotate(${-90 + i * 6}deg) translate(246px)`
+      }
+      main.append(div)
+    }
+  </script>
 </body>
 </html>

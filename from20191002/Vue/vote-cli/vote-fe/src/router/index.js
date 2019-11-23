@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '../views/Index.vue'
-import Register from '../views/Register.vue'
-import Forgot from '../views/Forgot.vue'
-import CreateVote from '../views/CreateVote.vue'
-import Vote from '../views/Vote.vue'
-import MyVotes from '../views/MyVotes'
 
 Vue.use(VueRouter)
 
@@ -14,19 +9,19 @@ const routes = [{
   component: Index,
 }, {
   path: '/register',
-  component: Register
+  component: () => import('../views/Register.vue')
 }, {
   path: '/forgot',
-  component: Forgot
+  component: () => import('../views/Forgot.vue')
 }, {
   path: '/vote-create',
-  component: CreateVote
+  component: () => import('../views/CreateVote.vue')
 }, {
   path: '/vote/:id',
-  component: Vote
+  component: () => import('../views/Vote.vue')
 }, {
   path: '/myvotes',
-  component: MyVotes
+  component: () => import('../views/MyVotes')
 }]
 
 const router = new VueRouter({
