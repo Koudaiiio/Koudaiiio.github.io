@@ -16,7 +16,7 @@ var modulesMapSource = JSON.stringify(modFuncCache, function(key, val) {
 .replace(/\\n/g, '\n')
 .replace(/\\r/g, '\r')
 
-fs.writeFileSync('bundle.js', modulesMapSource)
+fs.writeFileSync('bundle1.js', modulesMapSource)
 
 function loadAll(path) {
   var code = fs.readFileSync(path).toString()
