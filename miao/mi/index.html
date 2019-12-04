@@ -326,19 +326,20 @@
   }
 
   .nav-list li div.header-nav-menu {
-    width: 100vw;
+    width: 100%;
     border-top: 1px solid #e0e0e0;
     background-color: white;
     box-sizing: border-box;
     height: 0px;
     position: absolute;
-    top: 100px;
+    top: 100%;
     left: 0;
     box-shadow: 0 5px 10px -5px #888;
     opacity: 0;
-    pointer-events: none;
+    visibility: none;
+    /* pointer-events: none; */
     transition: 0.2s;
-    z-index: 10;
+    z-index: 0;
   }
 
   ul.children-list {
@@ -353,6 +354,14 @@
     text-align: center;
     float: left;
     position: relative;
+  }
+
+  .children-list li .title a {
+    padding: 0;
+  }
+
+  .children-list li .title {
+    line-height: 20px;
   }
 
   .figure {
@@ -394,9 +403,11 @@
     background-color: #e0e0e0;
   }
 
-  .nav-list > li > a:hover + .header-nav-menu {
+  .nav-list > li:hover .header-nav-menu {
+    visibility: visible;
     height: 229px;
     opacity: 1;
+    z-index: 10;
   }
 
 /* slider------------------------------------- */
@@ -645,7 +656,7 @@
       top: 0;
       left: 234px;
       z-index: 6;
-      display: inline-block;
+      /* display: inline-block; */
       background-color: white;
       width: 992px;
       box-shadow: 3px 5px 15px -8px black;
@@ -821,7 +832,7 @@
     }
 
     .span3 a {
-      width: 100%;
+      /* width: 100%; */
       height: 100%;
     }
 
@@ -843,6 +854,7 @@
       width: 992px;
       height: 614px;
       padding: 0;
+      margin: 0;
 
     }
 
@@ -850,10 +862,6 @@
       width: 160px;
       height: 160px;
       margin: 0 auto 18px;
-    }
-
-    .brick-list {
-      margin: 0;
     }
 
     .brick-item {
@@ -1071,42 +1079,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mi9-320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
@@ -1121,42 +1129,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/2019/redmik20pro/red.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
@@ -1171,42 +1179,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/cn-index/bihuadianshi.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
@@ -1221,42 +1229,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/RedmiBook.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
@@ -1271,42 +1279,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/lishikongtiao320.png" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
@@ -1321,42 +1329,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2019/luyoumesh.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
@@ -1371,42 +1379,42 @@
                 <ul class="children-list clear-fix">
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
                   </li>
                   <li>
                     <div class="figure">
-                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="160" height="110"></a>
+                      <a href=""><img src="https://i1.mifile.cn/f/i/g/2015/yuntai.jpg" alt="phone" width="100%" height="100%"></a>
                     </div>
                     <div class="title"><a href="">小米9</a></div>
                     <span class="price">2999元</span>
